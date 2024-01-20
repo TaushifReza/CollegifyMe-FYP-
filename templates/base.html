@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{% static 'css/mainstyle.css' %}">
+</head>
+<body>
+    <!-- Start Navabar-->
+    {% include "includes/navbar.html" %}
+    <!-- End Navabar-->
+
+    {% block content %}
+    
+    {% endblock content %}
+
+    <!-- Start Footer-->
+    {% include "includes/footer.html" %}
+    <!-- End Footer-->
+
+    <!-- JS Link-->
+    <script src="{% static "js/main.js" %}"></script>
+</body>
+</html>
