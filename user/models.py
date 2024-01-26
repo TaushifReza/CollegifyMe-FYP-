@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, email, password=None):
         if not email:
             raise ValueError("Email is required!!!")
 
@@ -11,16 +12,14 @@ class UserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            username=username,
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password=None):
+    def create_superuser(self, email, password=None):
         user = self.create_user(
             email=self.normalize_email(email),
-            username=username,
             password=password,
         )
         user.is_admin = True
@@ -29,19 +28,18 @@ class UserManager(BaseUserManager):
         user.is_superadmin = True
         user.save(using=self._db)
         return user
-    
+
+
 class User(AbstractBaseUser):
     STUDENT = 1
     COLLEGE = 2
 
     ROLE_CHOICE = (
-        (STUDENT, "Vendor"),
-        (COLLEGE, "Customer"),
+        (STUDENT, "Student"),
+        (COLLEGE, "College"),
     )
 
-    username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=50, unique=True)
-    phone_nuber = models.CharField(max_length=12, blank=True, unique=True)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, null=True)
 
     # required field
@@ -55,7 +53,6 @@ class User(AbstractBaseUser):
     is_superadmin = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
 
     objects = UserManager()
 
@@ -70,7 +67,7 @@ class User(AbstractBaseUser):
 
     def get_role(self):
         if self.role == 1:
-            user_role = "Vendor"
+            user_role = "Student"
         elif self.role == 2:
-            user_role = "Customer"
+            user_role = "College"
         return user_role

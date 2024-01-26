@@ -5,6 +5,8 @@
 CollegifyMe-Register
 {% endblock title %}
 
+{% block Css %}{% endblock Css %}
+
 {% block content %}
   <div class="form-body without-side">
     <div class="website-logo">
@@ -28,40 +30,36 @@ CollegifyMe-Register
         <div class="form-content">
           <div class="form-items">
             <h3>Register new account</h3>
-            <form class="mt-3">
-              <input
-                class="form-control"
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                required
-              />
-              <input
-                class="form-control"
-                type="email"
-                name="email"
-                placeholder="E-mail Address"
-                required
-              />
-              <input
-                class="form-control"
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-              />
-              <div class="form-button">
+            <form class="mt-3" method="post" action="{% url 'registerView' %}">
+              {% csrf_token %}
+              {{ form.email }}
+              {{ form.password }}
+              {{ form.confirm_password }}
+              <!--
+              <div class="row">
+                <div class="col-10">
+                  {{ form.password }}
+                  {{ form.confirm_password }}
+                </div>
+                <div class="col-2">
+                  <button type="button" class="toggle-password btn btn-outline-secondary" id="password-addon">
+                      <i class="fas fa-eye" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              -->
+              <div class="form-button text-center">
                 <button id="submit" type="submit" class="ibtn">
                   Register
                 </button>
               </div>
             </form>
-            <div class="other-links">
-              <div class="text">Or register with</div>
-              <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a
-              ><a href="#"><i class="fab fa-google"></i>Google</a>
+            <div class="other-links mt-1 text-center">
+              <div class="text text-white">Or register with</div>
+              <a href="#" class="text-white"><i class="fab fa-facebook-f"></i>Facebook</a
+              ><a href="#" class="text-white"><i class="fab fa-google"></i>Google</a>
             </div>
-            <div class="page-links">
+            <div class="page-links text-center">
               <a href="{% url "loginView" %}">Login to account</a>
             </div>
           </div>

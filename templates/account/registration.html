@@ -1,0 +1,140 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block title %}
+CollegifyMe-Login
+{% endblock title %}
+
+{% block Css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/iofrm-theme30.css' %}" />
+{% endblock Css %}
+
+{% block content %}
+    <div class="form-body on-top-mobile">
+      <div class="website-logo">
+        <a href="index.html">
+          <div class="logo">
+            <img class="logo-size" src="images/logo-light.svg" alt="" />
+          </div>
+        </a>
+      </div>
+      <div class="row">
+        <div class="img-holder">
+          <div class="bg"></div>
+          <div class="info-holder simple-info">
+            <div class="mb-5">
+              <div class="type-animation">
+                <h2 class="mb-2 animated">CollegifyMe</h2>
+              </div>
+              <h3 class="mb-4">
+                <i class="font-weight-light">Domain for sale!</i>
+              </h3>
+            </div>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet consectetur <br />adipisicing elit. Harum doloremque inventore iste ea vel?
+                {% comment %} Fill the form, make your offer<br />And get the domain name
+                before it’s gone. {% endcomment %}
+              </p>
+            </div>
+          </div>
+          <div class="bottom-view">
+            <p>
+              <small class="font-weight-light"
+                >Powered by iofrm domains - 2023</small
+              >
+            </p>
+          </div>
+        </div>
+        <div class="form-holder">
+          <div class="form-content">
+            <div class="form-items">
+              <h3>Register your interest</h3>
+              <p class="text-black">
+                Use the contact form below to make your<br />best offer.
+                LoremIpsum or any kind of crap text is not allowed.
+              </p>
+              <form class="container-custom-padding">
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="First name"
+                    />
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Last name"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="E-mail Address"
+                    />
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Phone Number"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Country"
+                    />
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Website, other links"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <textarea
+                      class="form-control"
+                      placeholder="Your proposal"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="row top-padding">
+                  <div class="col-12 col-sm-6">
+                    <input type="checkbox" id="chk1" required /><label
+                      for="chk1"
+                      >I agree on <a href="#">terms & conditions</a> of
+                      iofrm</label
+                    >
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-button text-right">
+                      <button
+                        id="submit"
+                        type="submit"
+                        class="ibtn less-padding"
+                      >
+                        Submit Application
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
