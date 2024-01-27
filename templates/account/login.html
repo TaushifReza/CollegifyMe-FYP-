@@ -30,16 +30,17 @@ CollegifyMe-Login
           <div class="form-content">
             <div class="form-items">
               <h3>Login to account</h3>
-              <form class="mt-3">
+              <form class="mt-3" method="post" action="{% url 'loginView' %}" enctype="multipart/form-data">
+                {% csrf_token %}
                 <input
-                  class="form-control"
-                  type="text"
-                  name="username"
+                  class="form-control text-white"
+                  type="email"
+                  name="email"
                   placeholder="E-mail Address"
                   required
                 />
                 <input
-                  class="form-control"
+                  class="form-control text-white"
                   type="password"
                   name="password"
                   placeholder="Password"
