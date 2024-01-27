@@ -29,9 +29,15 @@ CollegifyMe-Login
         <div class="form-holder">
           <div class="form-content">
             <div class="form-items">
-              <h3>Login to account</h3>
+              <h3 class="text-center">Login to account</h3>
               <form class="mt-3" method="post" action="{% url 'loginView' %}" enctype="multipart/form-data">
                 {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- Load Alert msg -->
+                    {% include "includes/alert.html" %}
+                  </div>
+                </div>
                 <input
                   class="form-control text-white"
                   type="email"
@@ -46,17 +52,17 @@ CollegifyMe-Login
                   placeholder="Password"
                   required
                 />
-                <div class="form-button">
-                  <button id="submit" type="submit" class="ibtn">Login</button>
-                  <a href="{% url "forgetPasswordView" %}">Forget password?</a>
+                <a href="{% url "forgetPasswordView" %}" class="d-flex flex-row-reverse bd-highlight">Forget password?</a>
+                <div class="form-button mt-3">
+                  <button id="submit" type="submit" class="ibtn w-100">Login</button>
                 </div>
               </form>
-              <div class="other-links">
-                <div class="text">Or login with</div>
-                <a href="#"><i class="fab fa-facebook-f"></i>Facebook</a
-                ><a href="#"><i class="fab fa-google"></i>Google</a>
+              <div class="other-links text-center mt-3">
+                <div class="text text-white">Or login with</div>
+                <a href="#" class="text-white"><i class="fab fa-facebook-f"></i>Facebook</a
+                ><a href="#" class="text-white"><i class="fab fa-google"></i>Google</a>
               </div>
-              <div class="page-links">
+              <div class="page-links text-center">
                 <a href="{% url "registerView" %}">Register new account</a>
               </div>
             </div>

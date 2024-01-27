@@ -16,3 +16,33 @@
     font-size: 14px;
     border-radius: 0.25rem;
 }
+
+/* FADE MESSAGE ANIMATION */
+@keyframes show-toast {
+    0% { top: -80% }
+    10% { top: 80px }
+    90% { top: 80px }
+    100% { top: -80% }
+}
+
+.show-notification {
+    height: 40px;
+    position: fixed;
+    bottom: 100%;
+    right: 20px;
+    color: black !important;
+    border: none !important;
+    padding: 10px;
+    animation-name: show-toast;
+    animation-duration: 7s;
+    /* Ease the animation for smooth transition */
+    animation-timing-function: ease-in-out;
+}
+
+.alert-success-color{
+    background-color: #d4edda !important;
+}
+
+.alert-error-color{
+    background-color: #f8d7da !important;
+}
