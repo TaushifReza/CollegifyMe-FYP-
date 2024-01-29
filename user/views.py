@@ -70,7 +70,3 @@ def LoginView(request):
 
 def ForgetPassword(request):
     return render(request, "account/forgetPassword.html")
-
-
-def RegistrationView(request):
-    return render(request, "account/registration.html")
