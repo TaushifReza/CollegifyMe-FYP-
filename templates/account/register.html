@@ -39,17 +39,17 @@ CollegifyMe-Register
                 </div>
               </div>
               <ul class="form-alert-style text-white">
-              {% for fields in form %}
+                {% for fields in form %}
                     {% if fields.errors %} 
                       {% for error in fields.errors  %}
                         <li>{{ error }}</li>  
                       {% endfor %}
                     {% endif %}
-                  {% endfor %}
-                  {% if form.non_field_errors %}  
-                    <li>{{ form.non_field_errors }}</li>  
-                  {% endif %}
-                </ul>
+                {% endfor %}
+                {% if form.non_field_errors %}  
+                  <li>{{ form.non_field_errors }}</li>  
+                {% endif %}
+              </ul>
 
               {{ form.email }}
               {{ form.password }}

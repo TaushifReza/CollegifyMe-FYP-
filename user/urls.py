@@ -7,4 +7,5 @@ urlpatterns = [
     path("register/", views.RegisterView, name="registerView"),
     path("forgetPassword/", views.ForgetPassword, name="forgetPasswordView"),
     path("activate/<uidb64>/<token>/", views.activate, name="activate"),
+    path("logout/", views.LogoutView, name="logoutView"),
 ]

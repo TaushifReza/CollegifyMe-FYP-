@@ -6,6 +6,7 @@ from django.contrib import messages, auth
 from .form import UserForm
 from .models import User
 from .utils import send_verification_email
+from student.models import StudentProfile
 
 
 def RegisterView(request):
@@ -17,7 +18,6 @@ def RegisterView(request):
             user = User.objects.create_user(email=email, password=password)
             user.role = User.STUDENT
             user.save()
-            print(email, password)
             # Send Verification email
             mail_subject = "Please activate your account"
             email_template = "account/email/accountVerification.html"
@@ -59,13 +59,28 @@ def LoginView(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
-            # auth.login(request, user)
+            auth.login(request, user)
             print("Valid Credential")
+            student_profile = StudentProfile.objects.filter(user=user)
+            if student_profile.exists():
+                print("Record Found")
+            else:
+                if user.role == 1:
+                    print("User is a Student")
+                    return redirect("studentRegistrationView")
+                elif user.role == 2:
+                    print("User is a College")
             return redirect("loginView")
         else:
             messages.error(request, "Invalid Credential")
             return redirect("loginView")
     return render(request, "account/login.html")
+
+
+def LogoutView(request):
+    auth.logout(request)
+    messages.info(request, "You have logout!!!")
+    return redirect("loginView")
 
 
 def ForgetPassword(request):

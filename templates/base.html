@@ -7,8 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
 
-    <!-- CSS Link -->
-    <link rel="stylesheet" href="{% static 'css/mainstyle.css' %}">
+        <!-- Css Link -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/iofrm-style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/iofrm-theme29.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mainstyle.css' %}" />
+    <!-- Font Awesome CDN link below -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 </head>
 <body>
     <!-- Start Navabar-->
@@ -24,6 +33,10 @@
     <!-- End Footer-->
 
     <!-- JS Link-->
-    <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/mainjs.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

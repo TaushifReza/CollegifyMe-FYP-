@@ -14,7 +14,7 @@ CollegifyMe-Login
       <div class="website-logo">
         <a href="index.html">
           <div class="logo">
-            <img class="logo-size" src="images/logo-light.svg" alt="" />
+            <img class="" src="{% static 'images/CollegifyMeNobackground-01.png' %}" alt="logo" />
           </div>
         </a>
       </div>
@@ -38,89 +38,59 @@ CollegifyMe-Login
               </p>
             </div>
           </div>
-          <div class="bottom-view">
-            <p>
-              <small class="font-weight-light"
-                >Powered by iofrm domains - 2023</small
-              >
-            </p>
-          </div>
         </div>
         <div class="form-holder">
           <div class="form-content">
             <div class="form-items">
               <h3>Register your interest</h3>
-              <p class="text-black">
-                Use the contact form below to make your<br />best offer.
-                LoremIpsum or any kind of crap text is not allowed.
-              </p>
-              <form class="container-custom-padding">
+              <form class="container-custom-padding" {% url "studentRegistrationView" %} method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <ul class="form-alert-style text-white">
+                {% for fields in form %}
+                    {% if fields.errors %} 
+                      {% for error in fields.errors  %}
+                        <li>{{ error }}</li>  
+                      {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                {% if form.non_field_errors %}  
+                  <li>{{ form.non_field_errors }}</li>  
+                {% endif %}
+                </ul>
+                
                 <div class="row">
                   <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="First name"
-                    />
+                    {{ form.first_name }}
                   </div>
                   <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Last name"
-                    />
+                    {{ form.last_name }}
                   </div>
                 </div>
+
                 <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="E-mail Address"
-                    />
+                  <div class="col-12 col-sm-6 image-container">
+                    {{ form.profile_image }}
                   </div>
-                  <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Phone Number"
-                    />
+                  <div class="col-12 col-sm-6 image-container">
+                    {{ form.cover_image }}
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Country"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-6">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Website, other links"
-                    />
-                  </div>
-                </div>
+
                 <div class="row">
                   <div class="col-12">
-                    <textarea
-                      class="form-control"
-                      placeholder="Your proposal"
-                    ></textarea>
+                    {{ form.current_address}}
                   </div>
                 </div>
-                <div class="row top-padding">
-                  <div class="col-12 col-sm-6">
-                    <input type="checkbox" id="chk1" required /><label
-                      for="chk1"
-                      >I agree on <a href="#">terms & conditions</a> of
-                      iofrm</label
-                    >
+
+                <div class="row">
+                  <div class="col-12">
+                    {{ form.current_address}}
                   </div>
-                  <div class="col-12 col-sm-6">
-                    <div class="form-button text-right">
+                </div>
+
+                <div class="row top-padding">
+                  <div class="col-12">
+                    <div class="form-button text-left">
                       <button
                         id="submit"
                         type="submit"
