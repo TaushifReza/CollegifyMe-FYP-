@@ -8,6 +8,7 @@ from .form import UserForm
 from .models import User
 from .utils import send_verification_email
 from student.models import StudentProfile
+from college.models import CollegeProfile
 
 
 # Restrict student from accessing college page
@@ -102,14 +103,20 @@ def LoginView(request):
             auth.login(request, user)
             print("Valid Credential")
             student_profile = StudentProfile.objects.filter(user=user)
+            college_profile = CollegeProfile.objects.filter(user=user)
             if student_profile.exists():
                 print("Record Found")
+                print("User is a Student")
+            elif college_profile.exists():
+                print("Record Found")
+                print("User is a College")
             else:
                 if user.role == 1:
                     print("User is a Student")
                     return redirect("studentRegistrationView")
                 elif user.role == 2:
                     print("User is a College")
+                    return redirect("collegeRegistrationView")
             return redirect("loginView")
         else:
             messages.error(request, "Invalid Credential")
