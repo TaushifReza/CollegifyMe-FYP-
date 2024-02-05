@@ -1,0 +1,129 @@
+{% extends "base2.html" %} 
+{% load static %} 
+
+{% block title %} 
+CollegifyMe-Login
+{% endblock title %}
+
+{% block Css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/iofrm-theme30.css' %}"/>
+{% endblock Css %}
+
+{% block content %}
+  <div class="form-body on-top-mobile">
+    <div class="website-logo">
+      <a href="index.html">
+        <div class="logo">
+          <img
+            class=""
+            src="{% static 'images/CollegifyMeNobackground-01.png' %}"
+            alt="logo"
+          />
+        </div>
+      </a>
+    </div>
+    <div class="row">
+      <div class="img-holder">
+        <div class="bg"></div>
+        <div class="info-holder simple-info">
+          <div class="mb-5">
+            <div class="type-animation">
+              <h2 class="mb-2 animated">CollegifyMe</h2>
+            </div>
+          </div>
+          <div>
+            <p>
+              Let’s get started with a few ,<br>details about your educational<br>institute. After creating the page,<br>you can request to get additional<br>education features.
+            </p>
+          </div>
+        </div>
+        {% comment %} <div class="bottom-view">
+          <p>
+            <small class="font-weight-light"
+              >Powered by iofrm domains - 2023</small
+            >
+          </p>
+        </div> {% endcomment %}
+      </div>
+      <div class="form-holder">
+        <div class="form-content">
+          <div class="form-items">
+            <h3>Register your interest</h3>
+            {% comment %} <p class="text-black">
+              Use the contact form below to make your<br />best offer. LoremIpsum
+              or any kind of crap text is not allowed.
+            </p> {% endcomment %}
+            <form class="container-custom-padding" {% url "collegeRegistrationView" %} method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <!-- Load Alert msg -->
+                  {% include "includes/alert.html" %}
+                </div>
+              </div>
+
+              <ul class="form-alert-style text-white">
+              {% for fields in form %}
+                  {% if fields.errors %} 
+                    {% for error in fields.errors  %}
+                      <li>{{ error }}</li>  
+                    {% endfor %}
+                  {% endif %}
+              {% endfor %}
+              {% if form.non_field_errors %}  
+                <li>{{ form.non_field_errors }}</li>  
+              {% endif %}
+              </ul>
+
+              <div class="row">
+                <div class="col-12">
+                  <label for="College Name" class="font-weight-normal">College Name</label>
+                  {{ form.college_name }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 image-container">
+                  <label for="College Name" class="font-weight-normal">College Logo</label>
+                  {{ form.college_logo }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <label for="College Name" class="font-weight-normal">Website URL</label>
+                  {{ form.website_url }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 col-sm-6">
+                  <label for="College Name" class="font-weight-normal">Address</label>
+                  {{ form.address }}
+                </div>
+                <div class="col-12 col-sm-6">
+                  <label for="College Name" class="font-weight-normal">Phone Number</label>
+                  {{ form.phone_number }}
+                </div>
+              </div>
+
+              <div class="row top-padding">
+                  <div class="col-12">
+                    <div class="form-button text-left">
+                      <button
+                        id="submit"
+                        type="submit"
+                        class="ibtn less-padding"
+                      >
+                        Submit Application
+                      </button>
+                    </div>
+                  </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

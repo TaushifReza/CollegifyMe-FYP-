@@ -2,11 +2,28 @@ from django.shortcuts import render, redirect
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages, auth
+from django.core.exceptions import PermissionDenied
 
 from .form import UserForm
 from .models import User
 from .utils import send_verification_email
 from student.models import StudentProfile
+
+
+# Restrict student from accessing college page
+def check_role_student(user):
+    if user.role == 1:
+        return True
+    else:
+        raise PermissionDenied
+
+
+# Restrict college from accessing student page
+def check_role_college(user):
+    if user.role == 2:
+        return True
+    else:
+        raise PermissionDenied
 
 
 def RegisterView(request):
@@ -30,6 +47,29 @@ def RegisterView(request):
         "form": form,
     }
     return render(request, "account/register.html", context)
+
+
+def RegisterCollegeView(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
+            user = User.objects.create_user(email=email, password=password)
+            user.role = User.COLLEGE
+            user.save()
+            # Send Verification email
+            mail_subject = "Please activate your account"
+            email_template = "account/email/accountVerification.html"
+            send_verification_email(request, user, mail_subject, email_template)
+            messages.success(request, "Please check your mail for verification")
+            return redirect("registerView")
+    else:
+        form = UserForm()
+    context = {
+        "form": form,
+    }
+    return render(request, "account/registerCollege.html", context)
 
 
 def activate(request, uidb64, token):

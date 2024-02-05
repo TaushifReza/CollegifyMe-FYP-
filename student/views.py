@@ -3,20 +3,16 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 
 from student.models import StudentProfile
-from student.forms import StudentProfileForm
+from student.forms import StudentProfileForm, StudentEducationForm
+from user.views import check_role_student
 
 
 @login_required(login_url="loginView")
+@user_passes_test(check_role_student)
 def StudentRegistrationView(request):
     if request.method == "POST":
         form = StudentProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            # print(form.cleaned_data["profile_image"])
-            # print(form.cleaned_data["cover_image"])
-            # print(form.cleaned_data["first_name"])
-            # print(form.cleaned_data["last_name"])
-            # print(form.cleaned_data["current_address"])
-            # print(form.cleaned_data["permanent_address"])
             student = form.save(commit=False)
             user = request.user
             student.user = user
@@ -29,3 +25,16 @@ def StudentRegistrationView(request):
         "form": form,
     }
     return render(request, "student/registration.html", context)
+
+
+def AddEducation(request):
+    if request.method == "POST":
+        edu_form = StudentEducationForm(request.POST)
+        if edu_form.is_valid():
+            pass
+    else:
+        edu_form = StudentEducationForm()
+    context = {
+        "edu_form": edu_form,
+    }
+    return render(request, "", context)
