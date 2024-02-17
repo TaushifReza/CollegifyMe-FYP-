@@ -14,6 +14,9 @@ class StudentProfile(models.Model):
     current_address = models.CharField(max_length=250, blank=True, null=True)
     permanent_address = models.CharField(max_length=250, blank=True, null=True)
 
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class StudentEducation(models.Model):
     user = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)

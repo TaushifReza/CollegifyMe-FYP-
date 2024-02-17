@@ -4,15 +4,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
     <title>{% block title %}{% endblock title %}</title>
 
-        <!-- Css Link -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/iofrm-style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/iofrm-theme29.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/mainstyle.css' %}" />
+    <!-- CSS ============================================ -->
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="{% static 'css/style/bicon.min.css' %}" />
+    <!-- Flat Icon CSS -->
+    <link rel="stylesheet" href="{% static 'css/style/flaticon.css' %}" />
+    <!-- audio & video player CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins/plyr.css' %}" />
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins/slick.min.css' %}" />
+    <!-- nice-select CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins/nice-select.css' %}" />
+    <!-- perfect scrollbar css -->
+    <link rel="stylesheet" href="{% static 'css/plugins/perfect-scrollbar.css' %}" />
+    <!-- light gallery css -->
+    <link rel="stylesheet" href="{% static 'css/plugins/lightgallery.min.css' %}" />
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
     <!-- Font Awesome CDN link below -->
     <link
       rel="stylesheet"
@@ -23,20 +43,38 @@
     <!-- Start Navabar-->
     {% include "includes/navbar.html" %}
     <!-- End Navabar-->
-
+    
     {% block content %}
     
     {% endblock content %}
 
-    <!-- Start Footer-->
+    {% comment %} <!-- Start Footer-->
     {% include "includes/footer.html" %}
-    <!-- End Footer-->
+    <!-- End Footer--> {% endcomment %}
 
-    <!-- JS Link-->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/mainjs.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+  <!-- JS ============================================ -->
+  <!-- Modernizer JS -->
+  <script src="{% static 'js/vendor/modernizr-3.6.0.min.js' %}"></script>
+  <!-- jQuery JS -->
+  <script src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"></script>
+  <!-- Bootstrap JS -->
+  <script src="{% static 'js/vendor/bootstrap.bundle.min.js' %}"></script>
+  <!-- Slick Slider JS -->
+  <script src="{% static 'js/plugins/slick.min.js' %}"></script>
+  <!-- nice select JS -->
+  <script src="{% static 'js/plugins/nice-select.min.js' %}"></script>
+  <!-- audio video player JS -->
+  <script src="{% static 'js/plugins/plyr.min.js' %}"></script>
+  <!-- perfect scrollbar js -->
+  <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <!-- light gallery js -->
+  <script src="{% static 'js/plugins/lightgallery-all.min.js' %}"></script>
+  <!-- image loaded js -->
+  <script src="{% static 'js/plugins/imagesloaded.pkgd.min.js' %}"></script>
+  <!-- isotope filter js -->
+  <script src="{% static 'js/plugins/isotope.pkgd.min.js' %}"></script>
+  <!-- Main JS -->
+  <script src="{% static 'js/mainstyle.js' %}"></script>
+
 </body>
 </html>
