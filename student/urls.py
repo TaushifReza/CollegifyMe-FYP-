@@ -8,4 +8,9 @@ urlpatterns = [
         views.StudentRegistrationView,
         name="studentRegistrationView",
     ),
+    path(
+        "studentProfileView/",
+        views.StudentProfileView,
+        name="studentProfileView",
+    ),
 ]

@@ -266,7 +266,7 @@
                   <div class="profile-body">
                     <ul>
                       <li>
-                        <a href="profile.html"
+                        <a href="{% url 'studentProfileView' %}"
                           >Profile</a
                         >
                       </li>
@@ -284,8 +284,8 @@
                         <a href="#"><i class="flaticon-settings"></i>Setting</a>
                       </li>
                       <li>
-                        <a href="signup.html"
-                          ><i class="flaticon-unlock"></i>Sing out</a
+                        <a href="{% url "logoutView" %}"
+                          ><i class="flaticon-unlock"></i>Log Out</a
                         >
                       </li>
                     </ul>
@@ -511,7 +511,7 @@
             <div class="profile-body">
               <ul>
                 <li>
-                  <a href="profile.html"
+                  <a href="{% url 'studentProfileView' %}"
                     >Profile</a
                   >
                 </li>
@@ -527,8 +527,8 @@
                   <a href="#"><i class="flaticon-settings"></i>Setting</a>
                 </li>
                 <li>
-                  <a href="signup.html"
-                    ><i class="flaticon-unlock"></i>Sing out</a
+                  <a href="{% url "logoutView" %}"
+                    ><i class="flaticon-unlock"></i>Log Out</a
                   >
                 </li>
               </ul>

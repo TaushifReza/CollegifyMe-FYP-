@@ -100,25 +100,33 @@ def LoginView(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
+            # email and Password is valid
             auth.login(request, user)
-            print("Valid Credential")
             student_profile = StudentProfile.objects.filter(user=user)
             college_profile = CollegeProfile.objects.filter(user=user)
             if student_profile.exists():
+                # student have created his profile
                 print("Record Found")
                 print("User is a Student")
+                context = {"user": user, "user_profile": student_profile}
+                return redirect("homePage")
             elif college_profile.exists():
+                # College have created his profile
                 print("Record Found")
                 print("User is a College")
+                return redirect("homePage")
             else:
+                # when both have not created his profile then redirect to respective profile registeration
                 if user.role == 1:
+                    # user is Student
                     print("User is a Student")
                     return redirect("studentRegistrationView")
                 elif user.role == 2:
+                    # User is College
                     print("User is a College")
                     return redirect("collegeRegistrationView")
-            return redirect("loginView")
         else:
+            # email and password is invalid
             messages.error(request, "Invalid Credential")
             return redirect("loginView")
     return render(request, "account/login.html")

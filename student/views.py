@@ -38,3 +38,13 @@ def AddEducation(request):
         "edu_form": edu_form,
     }
     return render(request, "", context)
+
+
+@login_required(login_url="loginView")
+@user_passes_test(check_role_student)
+def StudentProfileView(request):
+    user = request.user
+    user_profile = StudentProfile.objects.get(user=user)
+
+    context = {"user": user, "user_profile": user_profile}
+    return render(request, "student/studentProfile.html", context=context)

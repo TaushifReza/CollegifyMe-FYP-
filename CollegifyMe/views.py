@@ -7,13 +7,11 @@ from college.models import CollegeProfile
 
 
 def homePage(request):
-    print("HIT")
+    print("HIT homePage")
     user = request.user
     if isinstance(user, AnonymousUser) or not user.is_authenticated:
-        print("Not Login")
         return render(request, "account/login.html")
     else:
-        print("Login")
         print(user.email)
         if user.role == 1:
             # user is student
