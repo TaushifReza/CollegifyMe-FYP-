@@ -1,0 +1,81 @@
+{% extends "base.html" %} 
+
+{% block title %} 
+  CollegifyMe-Friends
+{% endblock title %} 
+
+{% block content %}
+
+<main>
+  <div class="main-wrapper">
+    <!-- add friend section start -->
+    <div class="friends-section" style="margin-top: 80px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="content-box friends-zone">
+              <div class="row mt--20 friends-list">
+                {% for each in test_loop %}
+                <div class="col-lg-3 col-sm-6 recently request">
+                  <div class="friend-list-view">
+                    <!-- profile picture end -->
+                    <div class="profile-thumb">
+                      <a href="#">
+                        <figure class="profile-thumb-middle">
+                          <img
+                            src="{{ user_profile.profile_image.url }}"
+                            alt="profile picture"
+                          />
+                        </figure>
+                      </a>
+                    </div>
+                    <!-- profile picture end -->
+
+                    <div class="posted-author">
+                      <h6 class="author">
+                        <a href="profile.html">Kate Midiltoin</a>
+                      </h6>
+                      <button class="add-frnd">add friend</button>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- add friend section end -->
+    <h1>User List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Full Name</th>
+                <th>Profile Image</th>
+                <th>Cover Image</th>
+                <th>Current Address</th>
+                <th>Permanent Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in friends_user %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.get_role }}</td>
+                <td>{{ user.studentprofile.full_name }}</td>
+                <td><img src="{{ user.studentprofile.profile_image.url }}" alt="Profile Image" width="100"></td>
+                <td><img src="{{ user.studentprofile.cover_image.url }}" alt="Cover Image" width="100"></td>
+                <td>{{ user.studentprofile.current_address }}</td>
+                <td>{{ user.studentprofile.permanent_address }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  <main>
+
+{% endblock content %}
