@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
+from django.db.models import Q
 
 from student.models import StudentProfile, StudentFriends
 from student.forms import StudentProfileForm, StudentEducationForm
@@ -54,20 +55,31 @@ def StudentProfileView(request):
 @login_required(login_url="loginView")
 @user_passes_test(check_role_student)
 def AddFriendsView(request):
-    # current user
+    # Get the current user
     user = request.user
     user_profile = StudentProfile.objects.get(user=user)
 
-    # friends
-    friends_user = User.objects.filter(
-        role=User.STUDENT, studentprofile__isnull=False
-    ).exclude(pk=request.user.pk)
+    # Fetch friend IDs of the current user
+    friend_ids = StudentFriends.objects.filter(student=user_profile).values_list(
+        "friend__user__id", flat=True
+    )
+
+    # Fetch users who are not friends and exclude the current user and friends
+    non_friends_users = (
+        User.objects.filter(role=User.STUDENT, studentprofile__isnull=False)
+        .exclude(pk=user.pk)
+        .exclude(pk__in=friend_ids)
+    )
+
+    friend_request = StudentFriends.objects.filter(
+        friend=user_profile, status=StudentFriends.PENDING
+    )
 
     context = {
         "user": user,
         "user_profile": user_profile,
-        "test_loop": [1, 2, 3, 4, 1, 2, 3, 4],
-        "friends_user": friends_user,
+        "friends_user": non_friends_users,
+        "friend_request": friend_request,
     }
     return render(request, "student/addFriends.html", context=context)
 

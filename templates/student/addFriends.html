@@ -13,25 +13,19 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-3">
-            <div class="content-box friends-zone">
-              <h4>Friend Requests</h4>
-            </div>
-          </div>
-
-          <div class="col-9">
+          <div class="col-12">
             <div class="content-box friends-zone">
               <h4>Friend Requests</h4>
               <div class="row mt--20 friends-list" style="margin-top: 5px;">
-                {% for friend in friends_user %}
-                <div class="col-lg-4 col-sm-6 recently request">
+                {% for friend in friend_request %}
+                <div class="col-lg-3 col-sm-6 recently request">
                   <div class="friend-list-view">
                     <!-- profile picture end -->
                     <div class="profile-thumb">
                       <a href="#">
                         <figure class="profile-thumb-middle">
                           <img
-                            src="{{ friend.studentprofile.profile_image.url }}"
+                            src="{{ friend.student.profile_image.url }}"
                             alt="profile picture"
                           />
                         </figure>
@@ -41,9 +35,9 @@
 
                     <div class="posted-author">
                       <h6 class="author">
-                        <a href="profile.html">{{ friend.studentprofile.full_name }}</a>
+                        <a href="profile.html">{{ friend.student.full_name }}</a>
                       </h6>
-                      <button class="add-frnd">add friend</button>
+                      <button class="add-frnd">accepted</button>
                     </div>
                   </div>
                 </div>
