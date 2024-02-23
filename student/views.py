@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 
-from student.models import StudentProfile
+from student.models import StudentProfile, StudentFriends
 from student.forms import StudentProfileForm, StudentEducationForm
 from user.views import check_role_student
 from user.models import User
@@ -72,5 +72,30 @@ def AddFriendsView(request):
     return render(request, "student/addFriends.html", context=context)
 
 
-# def SendFriendRequestView(request):
-#     pass
+def SendFriendRequestView(request, pk=None):
+    if pk is None:
+        return redirect("addFriendsView")
+
+    # Get the current user
+    current_user = request.user
+    # Get the friend profile by primary key
+    friend_profile = StudentProfile.objects.get(pk=pk)
+
+    # Check if the friend request already exists or not
+    existing_request = StudentFriends.objects.filter(
+        student=current_user.studentprofile,
+        friend=friend_profile,
+    ).exists()
+
+    # If the request doesn't already exist, create a new friend request
+    if not existing_request:
+        send_friend_request = StudentFriends.objects.create(
+            student=current_user.studentprofile,
+            friend=friend_profile,
+            status=StudentFriends.PENDING,
+        )
+        messages.success(request, "Friend request send successfully")
+        return redirect("addFriendsView")
+
+    messages.success(request, "Friend request already send")
+    return redirect("addFriendsView")

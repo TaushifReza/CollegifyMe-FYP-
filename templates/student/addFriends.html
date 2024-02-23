@@ -78,7 +78,7 @@
                       <h6 class="author">
                         <a href="profile.html">{{ friend.studentprofile.full_name }}</a>
                       </h6>
-                      <button class="add-frnd">add friend</button>
+                      <a class="add-frnd" href="{% url 'sendFriendRequest' friend.studentprofile.pk %}">add friend</a>
                     </div>
                   </div>
                 </div>
