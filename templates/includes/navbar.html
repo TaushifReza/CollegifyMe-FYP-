@@ -1,3 +1,5 @@
+{% load static %}
+
 <!-- web header area start -->
 <header>
   <div class="header-top sticky bg-white d-none d-lg-block">
@@ -129,8 +131,8 @@
         <div class="col-md-2">
           <!-- brand logo start -->
           <div class="brand-logo text-center">
-            <a href="index.html">
-              <img src="assets/images/logo/logo.png" alt="brand logo" />
+            <a href="{% url 'homePage' %}">
+              <img src=" {% static 'images/CollegifyMeNobackground-01.png' %}" alt="brand logo" />
             </a>
           </div>
           <!-- brand logo end -->

@@ -25,3 +25,26 @@ class StudentEducation(models.Model):
     college_name = models.CharField(max_length=50)
     start_date = models.DateField()
     end_date = models.DateField()
+
+
+class StudentFriends(models.Model):
+    PENDING = "Pending"
+    ACCEPTED = "Accepted"
+    DECLINE = "Decline"
+
+    FRIEND_REQUEST_CHOICES = (
+        (PENDING, "Pending"),
+        (ACCEPTED, "Accepted"),
+        (DECLINE, "Decline"),
+    )
+
+    student = models.ForeignKey(
+        StudentProfile, on_delete=models.CASCADE, related_name="student"
+    )
+    friend = models.ForeignKey(
+        StudentProfile, on_delete=models.CASCADE, related_name="friend"
+    )
+    status = models.CharField(max_length=10, choices=FRIEND_REQUEST_CHOICES)
+
+    request_send = models.DateTimeField(auto_now_add=True)
+    accept_request = models.DateTimeField(null=True, blank=True)

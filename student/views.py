@@ -19,7 +19,7 @@ def StudentRegistrationView(request):
             student.user = user
             student.save()
             messages.success(request, "You have successful regiater yourself.")
-            return redirect("studentRegistrationView")
+            return redirect("homePage")
     else:
         form = StudentProfileForm()
     context = {
@@ -60,11 +60,8 @@ def AddFriendsView(request):
 
     # friends
     friends_user = User.objects.filter(
-        role__in=[
-            User.STUDENT,
-            User.COLLEGE,
-        ],  # Filter for both Student and College roles
-    )
+        role=User.STUDENT, studentprofile__isnull=False
+    ).exclude(pk=request.user.pk)
 
     context = {
         "user": user,
@@ -73,3 +70,7 @@ def AddFriendsView(request):
         "friends_user": friends_user,
     }
     return render(request, "student/addFriends.html", context=context)
+
+
+# def SendFriendRequestView(request):
+#     pass
