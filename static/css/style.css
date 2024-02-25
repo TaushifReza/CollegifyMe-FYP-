@@ -132,12 +132,12 @@ textarea:focus {
 
 ::-moz-selection {
   color: #fff;
-  background: #dc4734;
+  background: #4eac6d;
 }
 
 ::selection {
   color: #fff;
-  background: #dc4734;
+  background: #4eac6d;
 }
 
 ::-webkit-input-placeholder {
@@ -231,7 +231,7 @@ textarea:focus {
 }
 
 .slick-arrow-style button.slick-arrow:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .slick-track {
@@ -396,7 +396,7 @@ textarea:focus {
   -o-transition: 0.4s;
   transition: 0.4s;
   border-radius: 50%;
-  background-color: #dc4734;
+  background-color: #4eac6d;
   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
@@ -947,7 +947,7 @@ textarea:focus {
 
 .header-top-navigation ul li:hover a,
 .header-top-navigation ul li.active a {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .header-top-navigation ul li .message-dropdown {
@@ -1004,7 +1004,7 @@ textarea:focus {
 }
 
 .dropdown-title .message-btn-group button:hover {
-  color: #dc4734;
+  color: #4eac6d;
   text-decoration: underline;
 }
 
@@ -1013,7 +1013,7 @@ textarea:focus {
 }
 
 .dropdown-title button:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .msg-dropdown-footer {
@@ -1035,7 +1035,7 @@ textarea:focus {
 }
 
 .msg-dropdown-footer button:hover {
-  color: #dc4734;
+  color: #4eac6d;
   text-decoration: underline;
 }
 
@@ -1073,7 +1073,7 @@ textarea:focus {
 }
 
 .dropdown-msg-list li.msg-list-item .msg-content.notification-content a:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .dropdown-msg-list li.msg-list-item .msg-content.notification-content p {
@@ -1092,7 +1092,7 @@ textarea:focus {
 }
 
 .dropdown-msg-list li.msg-list-item .author a:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .header-top-search {
@@ -1122,7 +1122,7 @@ textarea:focus {
 }
 
 .top-search-btn:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 /*----------------------------------------
@@ -1285,7 +1285,7 @@ textarea:focus {
   width: 80px;
   height: 100%;
   text-align: center;
-  background-color: #dc4734;
+  background-color: #fff;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1327,7 +1327,7 @@ textarea:focus {
 }
 
 .mobile-menu ul li:hover i {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .notification {
@@ -1346,7 +1346,7 @@ textarea:focus {
   display: block;
   position: absolute;
   text-align: center;
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 .mob-search-box {
@@ -1393,7 +1393,7 @@ textarea:focus {
 }
 
 .mob-search-btn:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .search-trigger {
@@ -1531,7 +1531,7 @@ textarea:focus {
   padding: 11px 25px;
   margin-right: 2px;
   border-radius: 40px;
-  background-color: #dc4734;
+  background-color: #4eac6d;
   position: absolute;
   text-transform: uppercase;
   -webkit-transform: translateY(-50%);
@@ -1560,7 +1560,7 @@ textarea:focus {
   line-height: 1;
   padding: 14px 30px 12px;
   border-radius: 40px;
-  background-color: #dc4734;
+  background-color: #4eac6d;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -1599,7 +1599,7 @@ textarea:focus {
 }
 
 .author a:hover {
-  color: #dc4734;
+  color: #4eac6d;
   text-decoration: underline;
 }
 
@@ -1625,7 +1625,7 @@ textarea:focus {
 }
 
 .post-settings-bar:hover span {
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 .post-settings-bar:hover .post-settings {
@@ -1674,7 +1674,7 @@ textarea:focus {
 }
 
 .post-settings li button:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .post-settings li button:last-child {
@@ -1788,7 +1788,7 @@ textarea:focus {
 .post-comment:hover span,
 .post-share:hover i,
 .post-share:hover span {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .plyr--video {
@@ -1862,7 +1862,7 @@ textarea:focus {
 }
 
 .profile-setting-box .profile-head .name a:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .profile-setting-box .profile-head .mail {
@@ -1872,7 +1872,7 @@ textarea:focus {
 }
 
 .profile-setting-box .profile-head .mail:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .profile-setting-box .profile-body ul {
@@ -1900,7 +1900,7 @@ textarea:focus {
 }
 
 .profile-setting-box .profile-body ul li:hover a {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .profile-thumb {
@@ -2011,7 +2011,7 @@ textarea:focus {
   display: inline-block;
   border-radius: 50px;
   text-transform: capitalize;
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 @media only screen and (max-width: 767.98px) {
@@ -2107,11 +2107,11 @@ textarea:focus {
 }
 
 .author-into-list li a:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .author-into-list li a i {
-  color: #dc4734;
+  color: #4eac6d;
   font-size: 20px;
   padding-right: 20px;
 }
@@ -2167,7 +2167,7 @@ textarea:focus {
   height: 1px;
   content: "";
   position: absolute;
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 /*------- widget title end -------*/
@@ -2203,7 +2203,7 @@ textarea:focus {
 }
 
 .list-title a:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .list-subtitle {
@@ -2218,7 +2218,7 @@ textarea:focus {
 }
 
 .list-subtitle a:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .unorder-list {
@@ -2354,7 +2354,7 @@ textarea:focus {
   padding: 8px 20px;
   display: inline-block;
   border: 1px solid transparent;
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 @media only screen and (max-width: 575.98px) {
@@ -2400,7 +2400,7 @@ textarea:focus {
 }
 
 .signup-form-wrapper .create-acc {
-  color: #dc4734;
+  color: #4eac6d;
   font-size: 30px;
   font-weight: 800;
   padding-bottom: 47px;
@@ -2422,7 +2422,7 @@ textarea:focus {
 .signup-inner .title {
   color: #fff;
   font-size: 18px;
-  background-color: #dc4734;
+  background-color: #4eac6d;
   padding: 23px 0;
 }
 
@@ -2503,7 +2503,7 @@ textarea:focus {
 }
 
 .signup-inner .terms-condition a {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .submit-btn {
@@ -2514,7 +2514,7 @@ textarea:focus {
   padding: 15px 20px;
   display: block;
   border: 1px solid transparent;
-  background-color: #dc4734;
+  background-color: #4eac6d;
   width: 100%;
   margin-top: 23px;
 }
@@ -2583,7 +2583,7 @@ textarea:focus {
 }
 
 .login-area {
-  background-color: #dc4734;
+  background-color: #4eac6d;
   padding: 15px 30px;
 }
 
@@ -2611,7 +2611,7 @@ textarea:focus {
 .login-area .login-btn {
   font-size: 14px;
   font-weight: 500;
-  color: #dc4734;
+  color: #4eac6d;
   line-height: 1;
   padding: 12px 32px;
   display: inline-block;
@@ -2732,15 +2732,15 @@ textarea:focus {
 }
 
 .about-author-menu li a.active {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .about-author-menu li:hover {
-  border-color: #dc4734;
+  border-color: #4eac6d;
 }
 
 .about-author-menu li:hover a {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .about-author-menu li:last-child {
@@ -2812,7 +2812,7 @@ textarea:focus {
 }
 
 .photo-group:hover .photos-caption {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .photo-group.active .view-icon {
@@ -2936,7 +2936,7 @@ textarea:focus {
 }
 
 .load-more-btn:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 /*------- photos section style end -------*/
@@ -2957,7 +2957,7 @@ textarea:focus {
 }
 
 .friends-section .content-box.friends-zone .friend-list-view:hover {
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 .friend-list-view {
@@ -2986,7 +2986,7 @@ textarea:focus {
 }
 
 .friend-list-view:hover {
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 .friend-list-view:hover .author a {
@@ -3086,7 +3086,7 @@ textarea:focus {
 
 .filter-menu button:hover,
 .filter-menu button.active {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .filter-menu button:last-child {
@@ -3221,7 +3221,7 @@ textarea:focus {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 .frnd-search-title .frnd-search-icon,
@@ -3264,7 +3264,7 @@ textarea:focus {
 }
 
 .search-btn:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .friend-search-list {
@@ -3311,7 +3311,7 @@ textarea:focus {
 }
 
 .friend-search-list ul li .add-frnd:hover {
-  color: #dc4734;
+  color: #4eac6d;
 }
 
 .frnd-search-inner {
@@ -3370,7 +3370,7 @@ textarea:focus {
   -ms-flex-align: center;
   align-items: center;
   padding: 0 25px;
-  background-color: #dc4734;
+  background-color: #4eac6d;
 }
 
 .live-chat-title .author a {
@@ -3504,7 +3504,7 @@ textarea:focus {
   width: 60px;
   height: 69px;
   line-height: 69px;
-  background-color: #dc4734;
+  background-color: #4eac6d;
   text-align: center;
 }
 

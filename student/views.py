@@ -64,6 +64,8 @@ def AddFriendsView(request):
         "friend__user__id", flat=True
     )
 
+    print(friend_ids)
+
     # Fetch users who are not friends and exclude the current user and friends
     non_friends_users = (
         User.objects.filter(role=User.STUDENT, studentprofile__isnull=False)
@@ -74,6 +76,13 @@ def AddFriendsView(request):
     friend_request = StudentFriends.objects.filter(
         friend=user_profile, status=StudentFriends.PENDING
     )
+
+    for each in friend_ids:
+        print(each)
+
+    friend_id = StudentFriends.objects.filter(student=user_profile)
+    for i in friend_id:
+        print(i.friend.user.email)
 
     context = {
         "user": user,
@@ -110,4 +119,14 @@ def SendFriendRequestView(request, pk=None):
         return redirect("addFriendsView")
 
     messages.success(request, "Friend request already send")
+    return redirect("addFriendsView")
+
+
+def AcceptFriendRequest(request):
+    print("accept")
+    return redirect("addFriendsView")
+
+
+def DeclineFriendRequest(request):
+    print("decline")
     return redirect("addFriendsView")

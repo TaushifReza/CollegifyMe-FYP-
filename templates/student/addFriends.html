@@ -1,8 +1,13 @@
 {% extends "base.html" %} 
+{% load static %}
 
 {% block title %} 
   CollegifyMe-Friends
-{% endblock title %} 
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/addFriend.css' %}" />
+{% endblock css %}
 
 {% block content %}
 
@@ -20,7 +25,7 @@
                 {% for friend in friend_request %}
                 <div class="col-lg-3 col-sm-6 recently request">
                   <div class="friend-list-view">
-                    <!-- profile picture end -->
+                    <!-- profile picture start -->
                     <div class="profile-thumb">
                       <a href="#">
                         <figure class="profile-thumb-middle">
@@ -32,13 +37,19 @@
                       </a>
                     </div>
                     <!-- profile picture end -->
-
+                    <!-- profile info start -->
                     <div class="posted-author">
                       <h6 class="author">
                         <a href="profile.html">{{ friend.student.full_name }}</a>
                       </h6>
-                      <button class="add-frnd">accepted</button>
+                      <h6 class="author btn">
+                        <a class="add-frnd btn" href="{% url 'acceptFriendRequest' %}">accept request</a>
+                      </h6>
+                      <h6 class="author">
+                        <a class="add-frnd btn" href="{% url 'declineFriendRequest' %}">decline request</a>
+                      </h6>
                     </div>
+                    <!-- profile info end -->
                   </div>
                 </div>
                 {% endfor %}
@@ -87,37 +98,6 @@
       </div>
     </div>
     <!-- add friend section end -->
-
-     <!--
-    <h1>User List</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Full Name</th>
-                <th>Profile Image</th>
-                <th>Cover Image</th>
-                <th>Current Address</th>
-                <th>Permanent Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in friends_user %}
-            <tr>
-                <td>{{ user.email }}</td>
-                <td>{{ user.get_role }}</td>
-                <td>{{ user.studentprofile.full_name }}</td>
-                <td><img src="{{ user.studentprofile.profile_image.url }}" alt="Profile Image" width="100"></td>
-                <td><img src="{{ user.studentprofile.cover_image.url }}" alt="Cover Image" width="100"></td>
-                <td>{{ user.studentprofile.current_address }}</td>
-                <td>{{ user.studentprofile.permanent_address }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    -->
-    
   </div>
   <main>
 

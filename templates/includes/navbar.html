@@ -27,7 +27,7 @@
                         <div class="profile-thumb">
                           <figure class="profile-thumb-middle">
                             <img
-                              src="assets/images/profile/profile-small-3.jpg"
+                              src="{{ user_profile.profile_image.url }}"
                               alt="profile picture"
                             />
                           </figure>
@@ -37,7 +37,7 @@
                         <!-- message content start -->
                         <div class="msg-content">
                           <h6 class="author">
-                            <a href="profile.html">Mili Raoulin</a>
+                            <a href="profile.html">{{ user_profile.full_name }}</a>
                           </h6>
                           <p>
                             Many desktop publishing packages and web page
@@ -170,14 +170,14 @@
                 </a>
                 <div class="profile-dropdown">
                   <div class="profile-head">
-                    <h5 class="name"><a href="#">Madison Howard</a></h5>
-                    <a class="mail" href="#">mailnam@mail.com</a>
+                    <h5 class="name"><a href="#">{{ user_profile.full_name }}</a></h5>
+                    <a class="mail" href="#">{{ user.email }}</a>
                   </div>
                   <div class="profile-body">
                     <ul>
                       <li>
                         <a href="{% url 'studentProfileView' %}"
-                          >Profile</a
+                          ><i class="flaticon-user"></i>Profile</a
                         >
                       </li>
                       <li>
@@ -217,17 +217,17 @@
   <div class="mobile-header-wrapper sticky d-block d-lg-none">
     <div class="mobile-header position-relative">
       <div class="mobile-logo">
-        <a href="index.html">
-          <img src="assets/images/logo/logo-white.png" alt="logo" />
+        <a href="{% url 'homePage' %}">
+          <img class="logo-size" src="{% static 'images/CollegifyMeNobackground-01.png' %}" alt="logo" />
         </a>
       </div>
       <div class="mobile-menu w-100">
         <ul>
           <li>
-            <button class="notification request-trigger">
+            <a class="notification" href="{% url 'addFriendsView' %}">
               <i class="flaticon-users"></i>
               <span>03</span>
-            </button>
+            </a>
             <ul class="frnd-request-list">
               <li>
                 <div class="frnd-request-member">
@@ -422,7 +422,7 @@
               <ul>
                 <li>
                   <a href="{% url 'studentProfileView' %}"
-                    >Profile</a
+                    ><i class="flaticon-user"></i>Profile</a
                   >
                 </li>
                 <li>
