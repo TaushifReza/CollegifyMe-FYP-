@@ -22,36 +22,44 @@
             <div class="content-box friends-zone">
               <h4>Friend Requests</h4>
               <div class="row mt--20 friends-list" style="margin-top: 5px;">
+                {% if not friend_request %}
+                  <div class="col-12 recently request">
+                      <h4 class="text-muted">No Friend Request.</h4>
+                  </div>
+                {% endif %}
                 {% for friend in friend_request %}
                 <div class="col-lg-3 col-sm-6 recently request">
-                  <div class="friend-list-view">
-                    <!-- profile picture start -->
-                    <div class="profile-thumb">
-                      <a href="#">
-                        <figure class="profile-thumb-middle">
-                          <img
-                            src="{{ friend.student.profile_image.url }}"
-                            alt="profile picture"
-                          />
+                  <div class="card friend-list-view rounded">
+                    <div class="card-body text-center">
+                      <!-- profile image start -->
+                      <div class="mb-4">
+                        <figure class="">
+                          <img src="{{ friend.student.profile_image.url }}" class="img-fluid" style="width: 100px; height: 100px; object-fit: contain;"/>
                         </figure>
-                      </a>
+                      </div>
+                      <!-- profile image end -->
+                      <!-- profile name start -->
+                      <div class="posted-author">
+                        <h6 class="author">
+                          <a href="">{{ friend.student.full_name }}</a>
+                        </h6>
+                      </div>
+                      <!-- profile name end -->
+                      <!-- profile button start -->
+                      <div class="btn-share py-2 my-2 rounded w-100" style="background-color: #4eac6d;">
+                        <a class="text-white" href="{% url 'acceptFriendRequest' friend.student.pk %}">
+                          Accept
+                        </a>
+                      </div>
+                      <div class="btn-share py-2 my-2 text-white rounded w-100" style="background-color: #FF8080;">
+                        <a class="text-white" href="{% url 'declineFriendRequest' friend.student.pk  %}">
+                          Decline
+                        </a>
+                      </div>
+                      <!-- profile button end -->
+                      </div>
                     </div>
-                    <!-- profile picture end -->
-                    <!-- profile info start -->
-                    <div class="posted-author">
-                      <h6 class="author">
-                        <a href="profile.html">{{ friend.student.full_name }}</a>
-                      </h6>
-                      <h6 class="author btn">
-                        <a class="add-frnd btn" href="{% url 'acceptFriendRequest' %}">accept request</a>
-                      </h6>
-                      <h6 class="author">
-                        <a class="add-frnd btn" href="{% url 'declineFriendRequest' %}">decline request</a>
-                      </h6>
-                    </div>
-                    <!-- profile info end -->
                   </div>
-                </div>
                 {% endfor %}
 
               </div>
@@ -64,41 +72,45 @@
               <h4>People you may know</h4>
               <div class="row mt--20 friends-list" style="margin-top: 5px;">
                 {% for friend in friends_user %}
-                <div class="col-lg-3 col-sm-6 recently request">
-                  <div class="friend-list-view">
-                    <!-- profile picture end -->
-                    <div class="profile-thumb">
-                      <a href="#">
-                        <figure class="profile-thumb-middle">
-                          <img
-                            src="{{ friend.studentprofile.profile_image.url }}"
-                            alt="profile picture"
-                          />
-                        </figure>
-                      </a>
-                    </div>
-                    <!-- profile picture end -->
-
-                    <div class="posted-author">
-                      <h6 class="author">
-                        <a href="profile.html">{{ friend.studentprofile.full_name }}</a>
-                      </h6>
-                      <a class="add-frnd" href="{% url 'sendFriendRequest' friend.studentprofile.pk %}">add friend</a>
-                    </div>
+                  <div class="col-lg-3 col-sm-6 recently request">
+                    <div class="card friend-list-view rounded">
+                      <div class="card-body text-center">
+                        <!-- profile image start -->
+                        <div class="mb-4">
+                          <figure class="">
+                            <img src="{{ friend.studentprofile.profile_image.url }}" class="img-fluid" style="width: 100px; height: 100px; object-fit: contain;"/>
+                          </figure>
+                        </div>
+                        <!-- profile image end -->
+                        <!-- profile name start -->
+                        <div class="posted-author">
+                          <h6 class="author">
+                            <a href="">{{ friend.studentprofile.full_name }}</a>
+                          </h6>
+                        </div>
+                        <!-- profile name end -->
+                        <!-- profile button start -->
+                        <a href="{% url 'sendFriendRequest' friend.studentprofile.pk %}">
+                          <button class="btn-share py-2 my-2 text-white rounded w-100" style="background-color: #4eac6d;">
+                            Add Friend
+                          </button>
+                        </a>
+                        <!-- profile button end -->
+                        </div>
+                      </div>
                   </div>
-                </div>
                 {% endfor %}
-
+                
               </div>
             </div>
           </div>
-           
 
         </div>
       </div>
     </div>
     <!-- add friend section end -->
   </div>
+
   <main>
 
 {% endblock content %}

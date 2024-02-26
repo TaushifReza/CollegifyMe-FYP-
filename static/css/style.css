@@ -2952,13 +2952,13 @@ textarea:focus {
   box-shadow: none;
 }
 
-.friends-section .content-box.friends-zone .friend-list-view {
+/* .friends-section .content-box.friends-zone .friend-list-view {
   background-color: #fff;
-}
+} */
 
-.friends-section .content-box.friends-zone .friend-list-view:hover {
+/* .friends-section .content-box.friends-zone .friend-list-view:hover {
   background-color: #4eac6d;
-}
+} */
 
 .friend-list-view {
   display: -webkit-box;
@@ -2985,17 +2985,17 @@ textarea:focus {
   }
 }
 
-.friend-list-view:hover {
+/* .friend-list-view:hover {
   background-color: #4eac6d;
-}
+} */
 
-.friend-list-view:hover .author a {
+/* .friend-list-view:hover .author a {
   color: #fff;
 }
 
 .friend-list-view:hover .add-frnd {
   color: #fff;
-}
+} */
 
 .friend-list-view .add-frnd {
   font-size: 12px;

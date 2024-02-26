@@ -64,8 +64,6 @@ def AddFriendsView(request):
         "friend__user__id", flat=True
     )
 
-    print(friend_ids)
-
     # Fetch users who are not friends and exclude the current user and friends
     non_friends_users = (
         User.objects.filter(role=User.STUDENT, studentprofile__isnull=False)
@@ -77,8 +75,8 @@ def AddFriendsView(request):
         friend=user_profile, status=StudentFriends.PENDING
     )
 
-    for each in friend_ids:
-        print(each)
+    for each in friend_request:
+        print(each.pk)
 
     friend_id = StudentFriends.objects.filter(student=user_profile)
     for i in friend_id:
@@ -122,11 +120,40 @@ def SendFriendRequestView(request, pk=None):
     return redirect("addFriendsView")
 
 
-def AcceptFriendRequest(request):
+def AcceptFriendRequest(request, pk=None):
     print("accept")
+    if pk is None:
+        return redirect("addFriendsView")
+
+    # Get the current user
+    current_user = request.user
+    # Get the friend profile by primary key
+    friend_profile = StudentProfile.objects.get(pk=pk)
+
+    # Update the friend request status to "Accepted"
+    StudentFriends.objects.filter(
+        student=friend_profile,
+        friend=current_user.studentprofile,
+        status=StudentFriends.PENDING,
+    ).update(status=StudentFriends.ACCEPTED)
+
     return redirect("addFriendsView")
 
 
-def DeclineFriendRequest(request):
-    print("decline")
+def DeclineFriendRequest(request, pk=None):
+    if pk is None:
+        return redirect("addFriendsView")
+
+    # Get the current user
+    current_user = request.user
+    # Get the friend profile by primary key
+    friend_profile = StudentProfile.objects.get(pk=pk)
+
+    # Update the friend request status to "Accepted"
+    StudentFriends.objects.filter(
+        student=friend_profile,
+        friend=current_user.studentprofile,
+        status=StudentFriends.PENDING,
+    ).update(status=StudentFriends.DECLINE)
+
     return redirect("addFriendsView")
