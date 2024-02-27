@@ -26,10 +26,7 @@
                   </a>
                   <a href="profile.html" class="profile-thumb-2">
                     {% if user_profile.profile_image.url %}
-                      <img
-                        src="{{ user_profile.profile_image.url }}"
-                        alt=""
-                      />
+                      <img src="{{ user_profile.profile_image.url }}" />
                     {% else %}
                       <img src="{% static 'images/defuault_profile.png' %}" alt="" />
                     {% endif %}
@@ -316,10 +313,11 @@
               <div class="profile-thumb">
                 <a href="#">
                   <figure class="profile-thumb-middle">
-                    <img
-                      src="{{ user_profile.profile_image.url }}"
-                      alt="profile picture"
-                    />
+                    {% if user_profile.profile_image.url %}
+                    <img src="{{ user_profile.profile_image.url }}" />
+                  {% else %}
+                    <img src="{% static 'images/defuault_profile.png' %}" alt="" />
+                  {% endif %}
                   </figure>
                 </a>
               </div>

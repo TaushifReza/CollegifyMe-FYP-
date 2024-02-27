@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "user",
     "student",
     "college",
+    "post",
 ]
 
 MIDDLEWARE = [

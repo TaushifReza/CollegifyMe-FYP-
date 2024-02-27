@@ -1,4 +1,5 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+{% load static %}
 
 {% block title %} 
 CollegifyMe-Student Profile 
@@ -8,10 +9,14 @@ CollegifyMe-Student Profile
 
 <main>
   <div class="main-wrapper">
-    <div
+    {% if user_profile.cover_image.url %}
+      <div
       class="profile-banner-large bg-img"
       data-bg="{{ user_profile.cover_image.url }}"
-    ></div>
+      ></div>
+    {% else %}
+      <img src="{% static 'images/defuault_cover.jpg' %}"/>
+    {% endif %}
     <div class="profile-menu-area bg-white">
       <div class="container">
         <div class="row align-items-center">
@@ -19,10 +24,14 @@ CollegifyMe-Student Profile
             <div class="profile-picture-box">
               <figure class="profile-picture">
                 <a href="profile.html">
+                  {% if user_profile.profile_image.url %}
                   <img
                     src="{{ user_profile.profile_image.url }}"
                     alt="profile picture"
                   />
+                  {% else %}
+                    <img src="{{ user_profile.profile_image.url }}" />
+                  {% endif %}
                 </a>
               </figure>
             </div>

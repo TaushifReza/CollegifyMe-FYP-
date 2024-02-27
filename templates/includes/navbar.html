@@ -314,10 +314,14 @@
                 <div class="profile-thumb">
                   <a href="profile.html">
                     <figure class="profile-thumb-small profile-active">
-                      <img
-                        src="{{ user_profile.profile_image.url }}"
-                        alt="profile picture"
-                      />
+                      {% if user_profile.profile_image.url %}
+                        <img
+                          src="{{ user_profile.profile_image.url }}"
+                          alt="profile picture"
+                        />
+                      {% else %}
+                        <img src="{{ user_profile.profile_image.url }}" />
+                      {% endif %}
                     </figure>
                   </a>
                 </div>
@@ -407,10 +411,14 @@
         <div class="profile-thumb profile-setting-box">
           <a href="javascript:void(0)" class="profile-triger">
             <figure class="profile-thumb-middle">
-              <img
-                src="{{ user_profile.profile_image.url }}"
-                alt="profile picture"
-              />
+              {% if user_profile.profile_image.url %}
+                <img
+                  src="{{ user_profile.profile_image.url }}"
+                  alt="profile picture"
+                />
+              {% else %}
+                <img src="{{ user_profile.profile_image.url }}" />
+              {% endif %}
             </figure>
           </a>
           <div class="profile-dropdown text-left">
