@@ -9,7 +9,10 @@ class CustomUserAdmin(UserAdmin):
     list_display = ("email", "role", "is_active")
     ordering = ("-date_joined",)
     filter_horizontal = ()
-    list_filter = ()
+    list_filter = (
+        "role",
+        "is_active",
+    )
     fieldsets = ()
     readonly_fields = [
         "email",

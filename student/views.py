@@ -15,6 +15,7 @@ def StudentRegistrationView(request):
     if request.method == "POST":
         form = StudentProfileForm(request.POST, request.FILES)
         if form.is_valid():
+            # return redirect("studentRegistrationView")
             student = form.save(commit=False)
             user = request.user
             student.user = user

@@ -5,8 +5,12 @@ from student.utils import allow_only_image_validator
 
 
 class StudentProfileForm(forms.ModelForm):
-    profile_image = forms.FileField(validators=[allow_only_image_validator])
-    cover_image = forms.FileField(validators=[allow_only_image_validator])
+    profile_image = forms.FileField(
+        validators=[allow_only_image_validator], required=False
+    )
+    cover_image = forms.FileField(
+        validators=[allow_only_image_validator], required=False
+    )
 
     custom_placeholders = {
         "first_name": "First Name",

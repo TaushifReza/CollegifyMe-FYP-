@@ -1,4 +1,5 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+{% load static %}
 
 {% block title %} 
   CollegifyMe 
@@ -17,13 +18,21 @@
               <div class="profile-banner">
                 <figure class="profile-banner-small">
                   <a href="profile.html">
+                    {% if user_profile.cover_image.url %}
                     <img src="{{ user_profile.cover_image.url }}" alt="" />
+                    {% else %}
+                    <img src="{% static 'images/defuault_cover.jpg' %}" alt="" />
+                    {% endif %}
                   </a>
                   <a href="profile.html" class="profile-thumb-2">
-                    <img
-                      src="{{ user_profile.profile_image.url }}"
-                      alt=""
-                    />
+                    {% if user_profile.profile_image.url %}
+                      <img
+                        src="{{ user_profile.profile_image.url }}"
+                        alt=""
+                      />
+                    {% else %}
+                      <img src="{% static 'images/defuault_profile.png' %}" alt="" />
+                    {% endif %}
                   </a>
                 </figure>
                 <div class="profile-desc text-center">

@@ -18,7 +18,7 @@ def homePage(request):
             print("Student")
             print(user.role)
             user_profile = StudentProfile.objects.get(user=user)
-            print(user_profile.profile_image.url)
+            # print(user_profile.profile_image.url)
         elif user.role == 2:
             # user is college
             print("College")

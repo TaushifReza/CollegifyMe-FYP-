@@ -27,7 +27,7 @@ CollegifyMe-Login
                 <h2 class="mb-2 animated">CollegifyMe</h2>
               </div>
               <h3 class="mb-4">
-                <i class="font-weight-light">Domain for sale!</i>
+                {% comment %} <i class="font-weight-light">Domain for sale!</i> {% endcomment %}
               </h3>
             </div>
             <div>
@@ -42,8 +42,8 @@ CollegifyMe-Login
         <div class="form-holder">
           <div class="form-content">
             <div class="form-items">
-              <h3>Register your interest</h3>
-              <form class="container-custom-padding" {% url "studentRegistrationView" %} method="post" enctype="multipart/form-data">
+              <h3>Register your Profile</h3>
+              <form class="container-custom-padding" {% url "studentRegistrationView" %} method="post" enctype="multipart/form-data" id="application-form">
                 {% csrf_token %}
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -100,6 +100,7 @@ CollegifyMe-Login
                   </div>
                 </div>
 
+                <!-- Form Submit Button-->
                 <div class="row top-padding">
                   <div class="col-12">
                     <div class="form-button text-left">
@@ -110,6 +111,9 @@ CollegifyMe-Login
                       >
                         Submit Application
                       </button>
+                    </div>
+                    <div class="form-button text-right col-6" style="display: none;" id="loader">
+                      <span class="loader"></span>
                     </div>
                   </div>
                 </div>

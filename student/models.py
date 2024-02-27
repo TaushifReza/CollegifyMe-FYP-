@@ -9,8 +9,8 @@ class StudentProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    profile_image = CloudinaryField("profileImage")
-    cover_image = CloudinaryField("coverImage")
+    profile_image = CloudinaryField("profileImage", blank=True, null=True)
+    cover_image = CloudinaryField("coverImage", blank=True, null=True)
     current_address = models.CharField(max_length=250, blank=True, null=True)
     permanent_address = models.CharField(max_length=250, blank=True, null=True)
 
