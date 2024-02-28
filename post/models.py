@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from django.template.defaultfilters import timesince
 
 from cloudinary.models import CloudinaryField
 
@@ -9,6 +11,12 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post_content = models.TextField()
     post_date = models.DateTimeField(auto_now_add=True)
+
+    def time_since_posted(self):
+        """
+        Returns how long ago the post was posted.
+        """
+        return timesince(self.post_date, timezone.now())
 
 
 class PostMedia(models.Model):

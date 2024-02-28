@@ -307,17 +307,17 @@
 
         <div class="col-lg-6 order-1 order-lg-2">
           <!-- share box start -->
-          <div class="card card-small">
+          <div class="card card-small rounded">
             <div class="share-box-inner">
               <!-- profile picture end -->
               <div class="profile-thumb">
                 <a href="#">
                   <figure class="profile-thumb-middle">
                     {% if user_profile.profile_image.url %}
-                    <img src="{{ user_profile.profile_image.url }}" />
-                  {% else %}
-                    <img src="{% static 'images/defuault_profile.png' %}" alt="" />
-                  {% endif %}
+                      <img src="{{ user_profile.profile_image.url }}" />
+                    {% else %}
+                      <img src="{% static 'images/defuault_profile.png' %}" alt="" />
+                    {% endif %}
                   </figure>
                 </a>
               </div>
@@ -334,18 +334,34 @@
                     data-bs-toggle="modal"
                     data-bs-target="#textbox"
                     id="email"
+                    readonly
                   ></textarea>
-                  <button class="btn-share" type="submit">share</button>
                 </form>
               </div>
               <!-- share content box end -->
 
               <!-- Modal start -->
-              <div class="modal fade" id="textbox" aria-labelledby="textbox">
+              <div class="modal fade" id="textbox">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Share Your Mood</h5>
+                    <div class="modal-header justify-content-center">
+                      <h5 class="modal-title">Create post</h5>
+                    </div>
+                    <div class="modal-header align-items-center">
+                      <!-- profile picture end -->
+                      <div class="profile-thumb">
+                        <a href="#">
+                          <figure class="profile-thumb-middle">
+                            {% if user_profile.profile_image.url %}
+                              <img src="{{ user_profile.profile_image.url }}" />
+                            {% else %}
+                              <img src="{% static 'images/defuault_profile.png' %}" alt="" />
+                            {% endif %}
+                          </figure>
+                        </a>
+                      </div>
+                      <!-- profile picture end -->
+                      <h6 class="modal-title pl-2">{{ user_profile.full_name }}</h6>
                       <button
                         type="button"
                         class="close"
@@ -355,23 +371,30 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body custom-scroll">
-                      <textarea
-                        name="share"
-                        class="share-field-big custom-scroll"
-                        placeholder="Say Something"
-                      ></textarea>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="post-share-btn"
-                        data-bs-dismiss="modal"
-                      >
-                        cancel
-                      </button>
-                      <button type="button" class="post-share-btn">post</button>
-                    </div>
+
+                    <form action="{% url 'postCreationView' %}" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="modal-body custom-scroll">
+                        <textarea
+                          class="share-field-big custom-scroll"
+                          placeholder="Say Something"
+                          name="post-content"
+                        ></textarea>
+                        <input type="file" class="form-control" name="post-media" multiple>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="post-share-btn"
+                          data-bs-dismiss="modal"
+                        >
+                          cancel
+                        </button>
+                        <button type="submit" class="post-share-btn">post</button>
+                      </div>
+                    </form>
+
                   </div>
                 </div>
               </div>
@@ -379,6 +402,88 @@
             </div>
           </div>
           <!-- share box end -->
+
+
+          
+          <!-- post status start -->
+          {% for post in posts %}
+            <div class="card rounded">
+              <!-- post title start -->
+              <div class="post-title d-flex align-items-center">
+                <!-- profile picture end -->
+                <div class="profile-thumb">
+                  <a href="#">
+                    <figure class="profile-thumb-middle">
+                      <img
+                        src="{{ post.user.studentprofile.profile_image.url }}"
+                        alt="profile picture"
+                      />
+                    </figure>
+                  </a>
+                </div>
+                <!-- profile picture end -->
+
+                <div class="posted-author">
+                  <h6 class="author">
+                    <a href="profile.html">{{ post.user.studentprofile.full_name }}</a>
+                  </h6>
+                  <span class="post-time">{{ post.time_since_posted }} ago</span>
+                </div>
+
+                <div class="post-settings-bar">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <div class="post-settings arrow-shape">
+                    <ul>
+                      <li><button>copy link</button></li>
+                      <li><button>edit post</button></li>
+                      {% comment %} <li><button>embed adda</button></li> {% endcomment %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- post title start -->
+              <div class="post-content">
+                <p class="post-desc">
+                  {{ post.post_content }}
+                </p>
+                <div class="post-thumb-gallery">
+                  <figure class="post-thumb img-popup">
+                    {% for media in post.postmedia_set.all %}
+                      <a href="{{ media.media_file.url }}">
+                        <img src="{{ media.media_file.url }}" alt="post image" />
+                      </a>
+                    {% endfor %}
+                  </figure>
+                </div>
+                <div class="post-meta">
+                  <button class="post-meta-like">
+                    <i class="bi bi-heart-beat"></i>
+                    <span>You and 201 people like this</span>
+                    <strong>201</strong>
+                  </button>
+                  <ul class="comment-share-meta">
+                    <li>
+                      <button class="post-comment">
+                        <i class="bi bi-chat-bubble"></i>
+                        <span>41</span>
+                      </button>
+                    </li>
+                    <li>
+                      <button class="post-share">
+                        <i class="bi bi-share"></i>
+                        <span>07</span>
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          <!-- post status end -->
+
+
 
           <!-- post status start -->
           <div class="card">

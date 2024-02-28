@@ -4,10 +4,10 @@ from django.contrib.auth.models import AnonymousUser
 from user.models import User
 from student.models import StudentProfile
 from college.models import CollegeProfile
+from post.models import Post
 
 
 def homePage(request):
-    print("HIT homePage")
     user = request.user
     if isinstance(user, AnonymousUser) or not user.is_authenticated:
         return render(request, "account/login.html")
@@ -15,15 +15,18 @@ def homePage(request):
         print(user.email)
         if user.role == 1:
             # user is student
-            print("Student")
-            print(user.role)
             user_profile = StudentProfile.objects.get(user=user)
             # print(user_profile.profile_image.url)
         elif user.role == 2:
             # user is college
-            print("College")
-            print(user.role)
             user_profile = CollegeProfile.objects.get(get=user)
 
-    context = {"user": user, "user_profile": user_profile}
+    # Retrieve all posts ordered by post_date in descending order
+    posts = Post.objects.all().order_by("-post_date")
+
+    context = {
+        "user": user,
+        "user_profile": user_profile,
+        "posts": posts,
+    }
     return render(request, "index.html", context=context)
