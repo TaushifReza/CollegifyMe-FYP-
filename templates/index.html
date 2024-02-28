@@ -446,7 +446,7 @@
               <!-- post title start -->
               <div class="post-content">
                 <p class="post-desc">
-                  {{ post.post_content }}
+                  {{ post.post_content|linebreaksbr }}
                 </p>
                 <div class="post-thumb-gallery">
                   <figure class="post-thumb img-popup">
@@ -458,22 +458,16 @@
                   </figure>
                 </div>
                 <div class="post-meta">
-                  <button class="post-meta-like">
-                    <i class="bi bi-heart-beat"></i>
+                  <a class="post-meta-like d-flex" href="">
+                    <i class="fa-regular fa-thumbs-up"></i>
                     <span>You and 201 people like this</span>
-                    <strong>201</strong>
-                  </button>
+                    {% comment %} <strong>201</strong> {% endcomment %}
+                  </a>
                   <ul class="comment-share-meta">
                     <li>
-                      <button class="post-comment">
-                        <i class="bi bi-chat-bubble"></i>
+                      <button class="post-comment d-flex">
+                        <i class="fa-regular fa-comment"></i>
                         <span>41</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="post-share">
-                        <i class="bi bi-share"></i>
-                        <span>07</span>
                       </button>
                     </li>
                   </ul>
