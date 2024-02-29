@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import AnonymousUser
+from django.db.models import Count
 
 from user.models import User
 from student.models import StudentProfile
@@ -22,7 +23,8 @@ def homePage(request):
             user_profile = CollegeProfile.objects.get(get=user)
 
     # Retrieve all posts ordered by post_date in descending order
-    posts = Post.objects.all().order_by("-post_date")
+    # Annotate each post with the count of likes it has
+    posts = Post.objects.annotate(like_count=Count("postlike")).order_by("-post_date")
 
     context = {
         "user": user,

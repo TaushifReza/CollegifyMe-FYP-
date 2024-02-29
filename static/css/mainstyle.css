@@ -40,7 +40,7 @@
 }
 
 .alert-success-color{
-    background-color: #d4edda !important;
+    background-color: #38b16d !important;
 }
 
 .alert-error-color{
@@ -72,6 +72,30 @@
   color: #000;
 }
 
+/* POST CREATION INPUT STYLE */
+.image-container > [type="file"] {
+/* Style the color of the message that says 'No file chosen' */
+  color: #878787;
+  height: 48px !important;
+}
+.image-container > [type="file"]::-webkit-file-upload-button {
+  background: #38b16d;
+  border: 1px solid #38b16d;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  outline: none;
+  padding: 4px 25px;
+  text-transform: uppercase;
+  transition: all 1s ease;
+}
+
+.image-container > [type="file"]::-webkit-file-upload-button:hover {
+  background: #fff;
+  border: 1px solid #0093ff;
+  color: #000;
+}
 /* CSS LOADER STYLE */
 .loader, .loader:before, .loader:after {
   display: block;

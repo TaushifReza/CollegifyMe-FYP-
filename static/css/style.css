@@ -1555,11 +1555,11 @@ textarea:focus {
 
 .post-share-btn {
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
   padding: 14px 30px 12px;
-  border-radius: 40px;
+  border-radius: 6px;
   background-color: #4eac6d;
   text-transform: uppercase;
   cursor: pointer;

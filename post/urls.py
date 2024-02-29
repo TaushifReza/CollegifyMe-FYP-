@@ -4,4 +4,5 @@ from post import views
 
 urlpatterns = [
     path("create_post/", views.PostCreationView, name="postCreationView"),
+    path("like_post/<int:pk>/", views.LikePostView, name="likePostView"),
 ]
