@@ -100,6 +100,37 @@ $(document).ready(function() {
     }
 });
 
+$(document).ready(function(){
+    $("form").submit(function(event) {
+        event.preventDefault();
+        // Fetch form data using FormData
+        var formData = new FormData($(this)[0]);
+        // Get the CSRF token value
+        var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+        // Add the CSRF token to the FormData object
+        formData.append('csrfmiddlewaretoken', csrfToken);
+
+        // Make an AJAX request to submit the form data
+        $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),
+            data: formData,
+            processData: false, // Prevent jQuery from automatically processing the data
+            contentType: false, // Prevent jQuery from setting the contentType
+            success: function(response){
+                console.log(response);
+                document.getElementById("post-form").reset();
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+            // Display error message or handle errors
+            console.error(xhr.responseText);
+            alert("An error occurred while creating the post. Please try again later.");
+        },
+        });
+    });
+});
+
 
 // Like post logic
 $(document).ready(function(){
@@ -165,14 +196,3 @@ $(document).ready(function(){
 //     console.log(typeof like_count);
 //     console.log(like_count);
 // }
-
-
-document.getElementById('copy-link-button').addEventListener('click', function() {
-    var textToCopy = window.location.href;
-
-    navigator.clipboard.writeText(textToCopy).then(function() {
-        alert('Link copied to clipboard: ' + textToCopy);
-    }).catch(function(err) {
-        console.error('Error copying text: ', err);
-    });
-});

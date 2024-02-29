@@ -26,15 +26,6 @@ def homePage(request):
     # Annotate each post with the count of likes it has
     posts = Post.objects.annotate(like_count=Count("postlike")).order_by("-post_date")
 
-    for post in posts:
-        # Check if there's a PostLike instance for the current user and the post
-        user_likes_post = post.postlike_set.filter(user=user).exists()
-
-        if user_likes_post:
-            print(post.pk, "True")
-        else:
-            print(post.pk, "False")
-
     context = {
         "user": user,
         "user_profile": user_profile,

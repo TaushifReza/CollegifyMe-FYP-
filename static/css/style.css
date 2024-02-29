@@ -3557,3 +3557,14 @@ textarea:focus {
 }
 
 /*------- mobile footer area end -------*/
+
+.post-meta > a,
+.comment-share-meta > li{
+  padding: 6px 30px;
+}
+.post-meta > a:hover,
+.comment-share-meta > li:hover{
+  background-color: #f0f2f5;
+  padding: 6px 30px;
+  border-radius: 6px;
+}

@@ -305,7 +305,7 @@
 
         </div>
 
-        <div class="col-lg-6 order-1 order-lg-2">
+        <div class="col-lg-6 order-1 order-lg-2" id="middle-section">
           <!-- share box start -->
           <div class="card card-small rounded">
             <div class="share-box-inner">
@@ -372,7 +372,7 @@
                       </button>
                     </div>
 
-                    <form action="{% url 'postCreationView' %}" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'postCreationView' %}" method="post" enctype="multipart/form-data" id="post-form">
                       {% csrf_token %}
                       <div class="modal-body custom-scroll">
                         <textarea
@@ -392,7 +392,7 @@
                         >
                           cancel
                         </button> {% endcomment %}
-                        <button type="submit" class="post-share-btn w-100" id="post-create-btn">post</button>
+                        <button type="submit" class="post-share-btn w-100" id="post-create-btn" data-bs-dismiss="modal">post</button>
                       </div>
                     </form>
 
