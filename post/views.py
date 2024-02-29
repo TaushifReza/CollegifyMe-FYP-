@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, JsonResponse
 
 import time
 
@@ -34,21 +35,67 @@ def PostCreationView(request):
 
 
 def LikePostView(request, pk=None):
-    if pk is None:
-        return redirect("homePage")
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {"message": "Please login to continued!!!", "status": "Failed"}
+        )
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        # check if post exists
+        try:
+            current_user = request.user
+            post = Post.objects.get(pk=pk)
 
-    current_user = request.user
-    post = get_object_or_404(Post, pk=pk)  # Fetch the Post instance
+            # Check if the user has already liked the post
+            already_liked = PostLike.objects.filter(
+                post=post, user=current_user
+            ).exists()
 
-    # Check if the user has already liked the post
-    already_liked = PostLike.objects.filter(post=post, user=current_user).exists()
+            if already_liked:
+                # If the user has already liked the post, unlike it
+                PostLike.objects.filter(post=post, user=current_user).delete()
+                like_status = "DisLike Post"
+                return JsonResponse({"message": "DisLike Post", "status": "Success"})
+            else:
+                # If the user has not already liked the post, create a new like
+                like_post = PostLike.objects.create(post=post, user=current_user)
+                like_status = "Like Post"
 
-    if already_liked:
-        # If the user has already liked the post, unlike it
-        PostLike.objects.filter(post=post, user=current_user).delete()
-        return redirect("homePage")
+            # Get total number of likes for the post
+            total_likes_count = PostLike.objects.filter(post=post).count()
+            if total_likes_count > 0:
+                print("Toatl Like: ", total_likes_count)
+            elif total_likes_count is None:
+                print("Toatl Like: None")
+
+            return JsonResponse(
+                {
+                    "message": like_status,
+                    "status": "Success",
+                    "total_likes": total_likes_count,
+                }
+            )
+        except:
+            return JsonResponse(
+                {"message": "This post does not exist!!!", "status": "Failed"}
+            )
     else:
-        # If the user has not already liked the post, create a new like
-        like_post = PostLike.objects.create(post=post, user=current_user)
+        return JsonResponse({"message": "Invalid Request!!!", "status": "Failed"})
+    # # return HttpResponse(pk)
+    # if pk is None:
+    #     return redirect("homePage")
 
-    return redirect("homePage")
+    # current_user = request.user
+    # post = get_object_or_404(Post, pk=pk)  # Fetch the Post instance
+
+    # # Check if the user has already liked the post
+    # already_liked = PostLike.objects.filter(post=post, user=current_user).exists()
+
+    # if already_liked:
+    #     # If the user has already liked the post, unlike it
+    #     PostLike.objects.filter(post=post, user=current_user).delete()
+    #     return redirect("homePage")
+    # else:
+    #     # If the user has not already liked the post, create a new like
+    #     like_post = PostLike.objects.create(post=post, user=current_user)
+
+    # return redirect("homePage")

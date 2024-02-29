@@ -426,7 +426,7 @@
 
                 <div class="posted-author">
                   <h6 class="author">
-                    <a href="profile.html">{{ post.user.studentprofile.full_name }}</a>
+                    <a>{{ post.user.studentprofile.full_name }}</a>
                   </h6>
                   <span class="post-time">{{ post.time_since_posted }} ago</span>
                 </div>
@@ -437,7 +437,7 @@
                   <span></span>
                   <div class="post-settings arrow-shape">
                     <ul>
-                      <li><button>copy link</button></li>
+                      <li id="copy-link-button"><button>copy link</button></li>
                       <li><button>edit post</button></li>
                       {% comment %} <li><button>embed adda</button></li> {% endcomment %}
                     </ul>
@@ -459,16 +459,21 @@
                   </figure>
                 </div>
                 <div class="post-meta">
-                  <a class="post-meta-like d-flex" href="{% url 'likePostView' post.pk %}">
+                  <a 
+                  class="post-meta-like d-flex" 
+                  href="#" data-id="{{ post.pk }}" 
+                  data-url="{% url 'likePostView' post.pk %}" 
+                  data-like="{{ post.like_count }}"
+                  >
                     <i class="fa-regular fa-thumbs-up"></i>
-                    <span>{{ post.like_count }} people like this</span>
+                    <span class="d-flex"><span id="like-count">{{ post.like_count }}</span>&nbsp;people like this</span>
                     {% comment %} <strong>201</strong> {% endcomment %}
                   </a>
                   <ul class="comment-share-meta">
                     <li>
                       <button class="post-comment d-flex">
                         <i class="fa-regular fa-comment"></i>
-                        <span>41</span>
+                        <span>Comming soon</span>
                       </button>
                     </li>
                   </ul>

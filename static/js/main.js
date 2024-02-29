@@ -102,3 +102,77 @@ $(document).ready(function() {
 
 
 // Like post logic
+$(document).ready(function(){
+    $(".post-meta-like").on("click", function(event){
+        event.preventDefault();
+
+        post_pk = $(this).attr("data-id");
+        url = $(this).attr("data-url");
+        like_count = Number($(this).attr("data-like"));
+        data = {
+            post_pk: post_pk,
+        }
+
+        var likeButton = $(this); // Store the like button element
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: data,
+            success: function(response){
+                // $("#like-section").load(location.href + " #like-section");
+
+                console.log(response);
+                console.log(response.total_likes);
+                console.log(like_count);
+
+                if("total_likes" in response){
+                    // Update the like count in the HTML
+                    like_count++;
+                    console.log(`if("total_likes" in response)`);
+                    likeButton.find('#like-count').text(response.total_likes);
+                }else{
+                    if(like_count != 0){
+                        console.log(`if(like_count != 0){`);
+                        like_count--;
+                        likeButton.find('#like-count').text(like_count);
+                    }else if(like_count === 0){
+                        console.log(`}else{`);
+                        likeButton.find('#like-count').text(0);
+                    }
+                }
+
+            }
+        });
+    });
+});
+
+// if(response.message === "DisLike Post"){
+//     if(like_count === 1){
+//         like_count = 0;
+//         console.log(response);
+//         console.log(typeof like_count);
+//         console.log(like_count);    
+//     }else{
+//         like_count -= 1;
+//         console.log(response);
+//         console.log(typeof like_count);
+//         console.log(like_count);
+//     }
+// }else if(response.message === "Like Post"){
+//     like_count += 1;
+//     console.log(response);
+//     console.log(typeof like_count);
+//     console.log(like_count);
+// }
+
+
+document.getElementById('copy-link-button').addEventListener('click', function() {
+    var textToCopy = window.location.href;
+
+    navigator.clipboard.writeText(textToCopy).then(function() {
+        alert('Link copied to clipboard: ' + textToCopy);
+    }).catch(function(err) {
+        console.error('Error copying text: ', err);
+    });
+});
