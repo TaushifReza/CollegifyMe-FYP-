@@ -33,4 +33,11 @@ class PostLike(models.Model):
 class PostComment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_content = models.TextField(null=True, blank=True)
     comment_date_time = models.DateTimeField(auto_now_add=True)
+
+    def time_since_commented(self):
+        """
+        Returns how long ago the post was posted.
+        """
+        return timesince(self.comment_date_time, timezone.now())

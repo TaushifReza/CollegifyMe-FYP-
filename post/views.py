@@ -4,7 +4,7 @@ from django.db.models import Count
 
 import time
 
-from post.models import Post, PostMedia, PostLike
+from post.models import Post, PostMedia, PostLike, PostComment
 
 
 def PostCreationView(request):
@@ -76,3 +76,27 @@ def LikePostView(request, pk=None):
             )
     else:
         return JsonResponse({"message": "Invalid Request!!!", "status": "Failed"})
+
+
+def CommentPostView(request, pk=None):
+    if (
+        request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest"
+        and request.method == "POST"
+    ):
+        current_user = request.user
+        post_pk = request.POST.get("post-pk")
+        comment_content = request.POST.get("comment-content")
+
+        print(post_pk)
+        print(comment_content)
+
+        return JsonResponse({"message": "Commented", "status": "Success"})
+
+
+# def GetPostComments(request, post_id):
+#     comments = PostComment.objects.filter(post_id=post_id)
+#     comments_data = [
+#         {"user": comment.user.username, "comment_content": comment.comment_content}
+#         for comment in comments
+#     ]
+#     return JsonResponse({"comments": comments_data})

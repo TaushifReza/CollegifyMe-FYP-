@@ -5,7 +5,7 @@ from post.models import Post, PostComment, PostLike, PostMedia
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("user", "post_content", "post_date")
+    list_display = ("pk", "user", "post_content", "post_date")
     ordering = ("-post_date",)
     filter_horizontal = ()
     list_filter = ()

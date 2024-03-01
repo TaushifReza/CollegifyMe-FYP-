@@ -21,6 +21,20 @@ $(document).ready(function() {
         }
     });
 
+    // Disable the submit button to prevent double submission
+    $("button[id='comment-create-btn']").prop("disabled", true).css({"background-color": "#e4e6eb", "color": "#727577"});
+    // Check text box content on keyup event
+    $("textarea[name='comment-content']").on("keyup", function() {
+      // Check if the text area is empty
+        if ($(this).val().trim() != "") {
+            // If there is text, enable the submit button and remove styles
+            $("button[id='comment-create-btn']").prop("disabled", false).css({"background-color": "", "color": ""});
+        }else if($(this).val().trim() === ""){
+            // Disable the submit button to prevent double submission
+            $("button[id='comment-create-btn']").prop("disabled", true).css({"background-color": "#e4e6eb", "color": "#727577"});
+        }
+    });
+
     // Check file input for changes
     $("input[name='post-media']").on("change", function() {
         // Check if files are selected
@@ -101,7 +115,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function(){
-    $("form").submit(function(event) {
+    $("#post-form").submit(function(event) {
         event.preventDefault();
         // Fetch form data using FormData
         var formData = new FormData($(this)[0]);
@@ -121,6 +135,37 @@ $(document).ready(function(){
                 console.log(response);
                 document.getElementById("post-form").reset();
                 location.reload();
+            },
+            error: function(xhr, status, error) {
+            // Display error message or handle errors
+            console.error(xhr.responseText);
+            alert("An error occurred while creating the post. Please try again later.");
+        },
+        });
+    });
+// comment logic here
+$(".comment-form").submit(function(event) {
+        // Disable the submit button to prevent double submission
+        $("button[id='comment-create-btn']").prop("disabled", true).css({"background-color": "#e4e6eb", "color": "#727577"});
+        alert("HIT")
+        event.preventDefault();
+        // Fetch form data using FormData
+        var formData = new FormData($(this)[0]);
+        // Get the CSRF token value
+        var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+        // Add the CSRF token to the FormData object
+        formData.append('csrfmiddlewaretoken', csrfToken);
+        // Make an AJAX request to submit the form data
+        $.ajax({
+            type: "POST",
+            url: $(this).attr("action"),
+            data: formData,
+            processData: false, // Prevent jQuery from automatically processing the data
+            contentType: false, // Prevent jQuery from setting the contentType
+            success: function(response){
+                console.log(response);
+                $(".comment-form").trigger("reset");
+                // location.reload();
             },
             error: function(xhr, status, error) {
             // Display error message or handle errors
@@ -177,22 +222,3 @@ $(document).ready(function(){
         });
     });
 });
-
-// if(response.message === "DisLike Post"){
-//     if(like_count === 1){
-//         like_count = 0;
-//         console.log(response);
-//         console.log(typeof like_count);
-//         console.log(like_count);    
-//     }else{
-//         like_count -= 1;
-//         console.log(response);
-//         console.log(typeof like_count);
-//         console.log(like_count);
-//     }
-// }else if(response.message === "Like Post"){
-//     like_count += 1;
-//     console.log(response);
-//     console.log(typeof like_count);
-//     console.log(like_count);
-// }
