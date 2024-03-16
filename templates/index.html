@@ -311,7 +311,7 @@
             <div class="share-box-inner">
               <!-- profile picture end -->
               <div class="profile-thumb">
-                <a href="#">
+                <a href="{% url 'studentProfileView' %}">
                   <figure class="profile-thumb-middle">
                     {% if user_profile.profile_image.url %}
                       <img src="{{ user_profile.profile_image.url }}" />
@@ -350,7 +350,7 @@
                     <div class="modal-header align-items-center">
                       <!-- profile picture end -->
                       <div class="profile-thumb">
-                        <a href="#">
+                        <a href="{% url 'studentProfileView' %}">
                           <figure class="profile-thumb-middle">
                             {% if user_profile.profile_image.url %}
                               <img src="{{ user_profile.profile_image.url }}" />

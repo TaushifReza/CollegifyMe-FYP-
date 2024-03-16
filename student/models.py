@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from cloudinary.models import CloudinaryField
 
@@ -48,3 +49,10 @@ class StudentFriends(models.Model):
 
     request_send = models.DateTimeField(auto_now_add=True)
     accept_request = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def is_recent_request(self):
+        if self.accept_request:
+            fifteen_days_ago = timezone.now() - timezone.timedelta(days=15)
+            return self.accept_request > fifteen_days_ago
+        return False

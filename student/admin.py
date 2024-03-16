@@ -35,7 +35,7 @@ class StudentFriendsAdmin(admin.ModelAdmin):
         "-request_send",
     )
     filter_horizontal = ()
-    list_filter = ()
+    list_filter = ("student",)
     fieldsets = ()
 
     def get_student_email(self, obj):

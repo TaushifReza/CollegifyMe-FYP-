@@ -9,6 +9,11 @@ urlpatterns = [
         name="studentRegistrationView",
     ),
     path("studentProfileView/", views.StudentProfileView, name="studentProfileView"),
+    path(
+        "studentFriendsView/friends/",
+        views.StudentFriendsView,
+        name="studentFriendsView",
+    ),
     path("friends/", views.AddFriendsView, name="addFriendsView"),
     path("addFriends/<int:pk>/", views.SendFriendRequestView, name="sendFriendRequest"),
     path(

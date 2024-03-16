@@ -222,3 +222,41 @@ $(document).ready(function(){
         });
     });
 });
+
+// PROFILE SECTION JS
+
+// Scroll to top when the anchor tag is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    var scrollToTopButton = document.getElementById('scrollToTop');
+
+    // Smooth scroll function
+    function scrollToTop() {
+        var startPosition = window.pageYOffset;
+        var targetPosition = 0;
+        var distance = targetPosition - startPosition;
+        var startTime = null;
+        var duration = 1000; // Duration of the scroll animation in milliseconds
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            var timeElapsed = currentTime - startTime;
+            var run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    scrollToTopButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        scrollToTop();
+    });
+});
