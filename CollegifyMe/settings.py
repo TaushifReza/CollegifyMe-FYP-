@@ -28,12 +28,13 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = ["127.0.0.1", ".ngrok-free.app"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     "student",
     "college",
     "post",
+    "chat",
 ]
 
 MIDDLEWARE = [
@@ -79,7 +81,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "CollegifyMe.wsgi.application"
+# WSGI_APPLICATION = "CollegifyMe.wsgi.application"
+ASGI_APPLICATION = "CollegifyMe.asgi.application"
 
 
 # Database
@@ -167,3 +170,12 @@ cloudinary.config(
 )
 
 CSRF_TRUSTED_ORIGINS = ["https://*.ngrok-free.app"]
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        # 'CONFIG': {
+        #     'hosts': [('127.0.0.1', 6379)],
+        # }
+    }
+}
