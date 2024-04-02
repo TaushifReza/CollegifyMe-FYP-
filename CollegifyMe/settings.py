@@ -28,7 +28,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".ngrok-free.app", "127.0.0.1", "192.168.1.89"]
 
 
 # Application definition
@@ -174,8 +174,9 @@ CSRF_TRUSTED_ORIGINS = ["https://*.ngrok-free.app"]
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels.layers.InMemoryChannelLayer",
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
         # 'CONFIG': {
-        #     'hosts': [('127.0.0.1', 6379)],
+        #     'hosts': [('3.235.19.51', 6379)],
         # }
     }
 }

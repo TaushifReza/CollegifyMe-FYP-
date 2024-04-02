@@ -1,10 +1,7 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 from django.db.models import Q
 
 from user.models import User
-
-# Create your models here.
 
 
 class ThreadManager(models.Manager):
@@ -42,9 +39,9 @@ class Thread(models.Model):
 class ChatMessage(models.Model):
     thread = models.ForeignKey(
         Thread,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
-        on_delete=models.CASCADE,
         related_name="chatmessage_thread",
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
