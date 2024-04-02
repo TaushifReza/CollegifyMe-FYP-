@@ -4,6 +4,8 @@ from channels.db import database_sync_to_async
 
 from chat.models import Thread, ChatMessage
 from user.models import User
+from student.models import StudentProfile
+from college.models import CollegeProfile
 
 
 class ChatConsumer(AsyncConsumer):
@@ -38,22 +40,38 @@ class ChatConsumer(AsyncConsumer):
 
         # Save Chat Message to db
         await self.create_chat_message(thread_obj, sent_by_user, msg)
+
         other_user_chat_room = f"user_chatroom_{send_to_id}"
         self_user = self.scope["user"]
-        response = {"message": msg, "sent_by": self_user.id, "thread_id": thread_id}
+
+        # sent by info
+        sent_by_info = await self.get_sent_by_info(sent_by_id)
+        # sent to info
+        sent_to_info = await self.get_sent_to_info(send_to_id)
+
+        response = {
+            "message": msg,
+            "sent_by": self_user.id,
+            "thread_id": thread_id,
+            "sent_by_info": sent_by_info,
+            "sent_to_info": sent_to_info,
+        }
 
         await self.channel_layer.group_send(
-            other_user_chat_room, {"type": "chat_message", "text": json.dumps(response)}
+            other_user_chat_room,
+            {
+                "type": "chat_message",
+                "text": json.dumps(response),
+            },
         )
 
         await self.channel_layer.group_send(
-            self.chat_room, {"type": "chat_message", "text": json.dumps(response)}
+            self.chat_room,
+            {
+                "type": "chat_message",
+                "text": json.dumps(response),
+            },
         )
-
-        # await self.send({
-        #     'type':'websocket.send',
-        #     'text':json.dumps(response)
-        # })
 
     async def websocket_disconnect(self, event):
         print("disconnect", event)
@@ -83,3 +101,51 @@ class ChatConsumer(AsyncConsumer):
     @database_sync_to_async
     def create_chat_message(self, thread, user, msg):
         ChatMessage.objects.create(thread=thread, user=user, message=msg)
+
+    @database_sync_to_async
+    def get_sent_by_info(self, sent_by_id):
+        user = User.objects.get(id=sent_by_id)
+        user_info = {"id": user.id, "email": user.email, "role": user.role}
+        if user.role == 1:
+            user_profile = StudentProfile.objects.get(user=user)
+            user_profile_info = {
+                "id": user_profile.id,
+                "user_id": user_profile.user.id,
+                "first_name": user_profile.first_name,
+                "profile_image": user_profile.profile_image.url,
+            }
+        else:
+            user_profile = CollegeProfile.objects.get(user=user)
+            user_profile_info = {
+                "id": user_profile.id,
+                "user_id": user_profile.user.id,
+                "first_name": user_profile.college_name,
+                "profile_image": user_profile.college_logo.url,
+            }
+        return {"user": user_info, "user_prfile": user_profile_info}
+
+    @database_sync_to_async
+    def get_sent_to_info(self, sent_to_id):
+        user = User.objects.get(id=sent_to_id)
+        user_info = {
+            "id": user.id,
+            "email": user.email,
+            "role": user.role,
+        }
+        if user.role == 1:
+            user_profile = StudentProfile.objects.get(user=user)
+            user_profile_info = {
+                "id": user_profile.id,
+                "user_id": user_profile.user.id,
+                "first_name": user_profile.first_name,
+                "profile_image": user_profile.profile_image.url,
+            }
+        else:
+            user_profile = CollegeProfile.objects.get(user=user)
+            user_profile_info = {
+                "id": user_profile.id,
+                "user_id": user_profile.user.id,
+                "first_name": user_profile.college_name,
+                "profile_image": user_profile.college_logo.url,
+            }
+        return {"user": user_info, "user_prfile": user_profile_info}

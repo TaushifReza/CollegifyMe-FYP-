@@ -3,6 +3,8 @@ let message_body = $('.msg_card_body')
 let send_message_form = $('#send-message-form')
 const USER_ID = $('#logged-in-user').val()
 
+message_body.scrollTop(message_body.prop('scrollHeight'));
+
 let loc = window.location
 let wsStart = 'ws://'
 
@@ -41,12 +43,14 @@ socket.onmessage = async function(e){
     console.log('message', e);
     let data = JSON.parse(e.data)
     let message = data['message']
-    let = sent_by_id = data['sent_by']
+    let  sent_by_id = data['sent_by']
     let thread_id = data['thread_id']
-    console.log("user id",USER_ID);
-    console.log("sent_by_id",sent_by_id);
-    console.log(message);
-    newMessage(message, sent_by_id, thread_id)
+
+    console.log(data);
+    let sent_by_img_url = data['sent_by_info']['user_prfile']['profile_image']
+    let sent_to_img_url = data['sent_to_info']['user_prfile']['profile_image']
+
+    newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img_url)
 }
 
 socket.onerror = async function(e){
@@ -57,21 +61,21 @@ socket.onclose = async function(e){
     console.log('close', e);
 }
 
-function newMessage(message, sent_by_id, thread_id){
+function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img_url){
     if($.trim(message) === ''){
         return false;
     }
     let message_element;
     let chat_id = 'chat_' + thread_id;
-    if (sent_by_id === USER_ID){
+    if (sent_by_id == USER_ID){
         message_element = `
         <div class="d-flex mb-4 replied">
             <div class="msg_cotainer_send">
                 ${message}
-                <span class="msg_time_send">8:55 AM, Today</span>
+                <span class="msg_time_send">time</span>
             </div>
             <div class="img_cont_msg">
-                <img src="" alt="img">
+                <img src="${sent_by_img_url}" class="rounded-circle user_img_msg">
             </div>
         </div>
     `
@@ -80,11 +84,11 @@ function newMessage(message, sent_by_id, thread_id){
         message_element = `
         <div class="d-flex mb-4 received">
             <div class="img_cont_msg">
-                <img src="" alt="img">
+                <img src="${sent_to_img_url}" class="rounded-circle user_img_msg">
             </div>
             <div class="msg_cotainer">
                 ${message}
-                <span class="msg_time_send">8:55 AM, Today</span>
+                <span class="msg_time">time</span>
             </div>
         </div>
     `
@@ -92,9 +96,7 @@ function newMessage(message, sent_by_id, thread_id){
 
     let message_body = $('.messages-wrapper[chat-id="' + chat_id + '"] .msg_card_body')
     message_body.append($(message_element))
-    message_body.animate({
-        scrollTop: $(document).height()
-    },100);
+    message_body.scrollTop(message_body.prop('scrollHeight'));
     input_message.val(null);
 }
 

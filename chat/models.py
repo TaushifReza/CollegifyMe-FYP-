@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import Q
+from django.utils import timezone
+from django.template.defaultfilters import timesince
 
 from user.models import User
 
@@ -47,3 +49,9 @@ class ChatMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def time_since_posted(self):
+        """
+        Returns how long ago the post was posted.
+        """
+        return timesince(self.timestamp, timezone.now())
