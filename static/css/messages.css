@@ -1,21 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
 body,
 html {
   height: 100%;
   margin: 0;
-  background: #7f7fd5;
-  background: -webkit-linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
-  background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
   overflow: hidden;
+}
+
+.side-bar{
+  background-color: #2e2e2e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.sidebar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
 }
 
 .chat {
   margin-top: auto;
   margin-bottom: auto;
+  padding: 0% !important;
 }
 .card {
-  height: 90%;
-  border-radius: 15px !important;
-  background-color: rgba(0, 0, 0, 0.4) !important;
+  height: 100%;
+  border-radius: 0px !important;
+  /* background-color: #fff; */
+  background-image: url(../images/pattern-05.png);
 }
 .contacts_body {
   padding: 0.75rem 0 !important;
@@ -28,8 +47,8 @@ html {
   padding-bottom: 20px;
 }
 .card-header {
-  border-radius: 15px 15px 0 0 !important;
   border-bottom: 0 !important;
+  background-color: rgba(255, 255, 255, 0.176) !important;
 }
 .card-footer {
   border-radius: 0 0 15px 15px !important;
@@ -90,15 +109,13 @@ html {
 .contacts li {
   width: 100% !important;
   padding: 5px 10px;
-  margin-bottom: 15px !important;
 }
 .active {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #4eac6d;
 }
 .user_img {
-  height: 70px;
-  width: 70px;
-  border: 1.5px solid #f5f6fa;
+  height: 40px;
+  width: 40px;
 }
 .user_img_msg {
   height: 40px;
@@ -107,8 +124,8 @@ html {
 }
 .img_cont {
   position: relative;
-  height: 70px;
-  width: 70px;
+  height: 40px;
+  width: auto;
 }
 .img_cont_msg {
   height: 40px;
@@ -130,11 +147,12 @@ html {
 .user_info {
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: 15px;
+  margin-left: 1rem;
 }
 .user_info span {
-  font-size: 20px;
-  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  color: #222;
 }
 .user_info p {
   font-size: 10px;
@@ -154,8 +172,8 @@ html {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 10px;
-  border-radius: 25px;
-  background-color: #82ccdd;
+  border-radius: 11px;
+  background-color: rgb(156, 199, 209);
   padding: 10px;
   position: relative;
   min-width: 70px;
@@ -167,23 +185,23 @@ html {
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 10px;
-  border-radius: 25px;
-  background-color: #78e08f;
+  border-radius: 11px;
+  background-color: rgb(204, 226, 211);
   padding: 10px;
   position: relative;
 }
 .msg_time {
   position: absolute;
-  left: 0;
+  right: 1px;
   bottom: -15px;
-  color: rgba(255, 255, 255, 0.5);
+  color: #555;
   font-size: 10px;
 }
 .msg_time_send {
   position: absolute;
-  right: 0;
+  right: 1px;
   bottom: -15px;
-  color: rgba(255, 255, 255, 0.5);
+  color: #555;
   font-size: 10px;
 }
 .msg_head {
@@ -260,4 +278,10 @@ html {
 
 .messages-wrapper{
   height: 100%;
+}
+
+.card-header-title{
+  color: #696d70;
+  font-size: 22px;
+  font-weight: 600;
 }

@@ -74,9 +74,6 @@ function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img
                 ${message}
                 <span class="msg_time_send">time</span>
             </div>
-            <div class="img_cont_msg">
-                <img src="${sent_by_img_url}" class="rounded-circle user_img_msg">
-            </div>
         </div>
     `
     }
