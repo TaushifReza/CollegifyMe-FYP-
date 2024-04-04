@@ -466,7 +466,7 @@
                     <li>
                       <button class="post-comment d-flex" data-bs-toggle="modal" data-bs-target="#comment-{{ post.pk }}">
                         <i class="fa-regular fa-comment"></i>
-                        <span>Comming soon</span>
+                        <span>Comment</span>
                       </button>
                     </li>
                   </ul>
@@ -484,31 +484,8 @@
                   </div>
                   
                   <div style="overflow-x: hidden; overflow-y: scroll;">
-                    <div class="modal-body custom-scroll">
+                    <div class="modal-body custom-scroll" id="comment-body-{{ post.pk }}">
                       
-                      <!-- Comment start -->
-                      <div class="post-title d-flex align-items-center mb-2">
-                        <!-- profile picture end -->
-                        <div class="profile-thumb">
-                          <a href="#">
-                            <figure class="profile-thumb-middle">
-                              <img
-                                src="{{ post.user.studentprofile.profile_image.url }}"
-                                alt="profile picture"
-                              />
-                            </figure>
-                          </a>
-                        </div>
-                        <!-- profile picture end -->
-                        <div class="posted-author w-100 p-3 rounded" style="background-color: #f0f2f5;">
-                          <h6 class="author">
-                            <a>{{ post.user.studentprofile.full_name }}</a>
-                          </h6>
-                          <span class="post-time">{{ post.post_content }} ago</span>
-                        </div>
-                      </div>
-                      <!-- Comment end -->
-
                     </div>
                   </div>
                   

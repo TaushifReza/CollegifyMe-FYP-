@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 from channels.consumer import AsyncConsumer
 from channels.db import database_sync_to_async
@@ -48,9 +49,11 @@ class ChatConsumer(AsyncConsumer):
         sent_by_info = await self.get_sent_by_info(sent_by_id)
         # sent to info
         sent_to_info = await self.get_sent_to_info(send_to_id)
+        message_time = datetime.now().strftime("%I:%M %p")
 
         response = {
             "message": msg,
+            "message_time": message_time,
             "sent_by": self_user.id,
             "thread_id": thread_id,
             "sent_by_info": sent_by_info,

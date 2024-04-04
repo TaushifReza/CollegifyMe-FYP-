@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third party apps
     "cloudinary",
+    # DRF
+    "rest_framework",
+    # "rest_framework.authtoken",
     # Local Apps
     "user",
     "student",
@@ -171,12 +174,21 @@ cloudinary.config(
 
 CSRF_TRUSTED_ORIGINS = ["https://*.ngrok-free.app"]
 
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer",
+#         # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         # 'CONFIG': {
+#         #     'hosts': [('3.235.19.51', 6379)],
+#         # }
+#     }
+# }
+
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
-        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        # 'CONFIG': {
-        #     'hosts': [('3.235.19.51', 6379)],
-        # }
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
 }

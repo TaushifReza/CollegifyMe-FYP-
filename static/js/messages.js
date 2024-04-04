@@ -49,8 +49,9 @@ socket.onmessage = async function(e){
     console.log(data);
     let sent_by_img_url = data['sent_by_info']['user_prfile']['profile_image']
     let sent_to_img_url = data['sent_to_info']['user_prfile']['profile_image']
+    let message_time = data['message_time']
 
-    newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img_url)
+    newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img_url,message_time)
 }
 
 socket.onerror = async function(e){
@@ -61,7 +62,7 @@ socket.onclose = async function(e){
     console.log('close', e);
 }
 
-function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img_url){
+function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img_url,message_time){
     if($.trim(message) === ''){
         return false;
     }
@@ -72,7 +73,7 @@ function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img
         <div class="d-flex mb-4 replied">
             <div class="msg_cotainer_send">
                 ${message}
-                <span class="msg_time_send">time</span>
+                <span class="msg_time_send">${message_time}</span>
             </div>
         </div>
     `
@@ -85,7 +86,7 @@ function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img
             </div>
             <div class="msg_cotainer">
                 ${message}
-                <span class="msg_time">time</span>
+                <span class="msg_time">${message_time}</span>
             </div>
         </div>
     `

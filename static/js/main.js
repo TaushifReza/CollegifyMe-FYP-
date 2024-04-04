@@ -145,33 +145,76 @@ $(document).ready(function(){
     });
 // comment logic here
 $(".comment-form").submit(function(event) {
-        // Disable the submit button to prevent double submission
         $("button[id='comment-create-btn']").prop("disabled", true).css({"background-color": "#e4e6eb", "color": "#727577"});
-        alert("HIT")
         event.preventDefault();
-        // Fetch form data using FormData
         var formData = new FormData($(this)[0]);
-        // Get the CSRF token value
         var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
-        // Add the CSRF token to the FormData object
         formData.append('csrfmiddlewaretoken', csrfToken);
-        // Make an AJAX request to submit the form data
         $.ajax({
             type: "POST",
             url: $(this).attr("action"),
             data: formData,
-            processData: false, // Prevent jQuery from automatically processing the data
-            contentType: false, // Prevent jQuery from setting the contentType
+            processData: false,
+            contentType: false,
             success: function(response){
                 console.log(response);
                 $(".comment-form").trigger("reset");
                 // location.reload();
             },
             error: function(xhr, status, error) {
-            // Display error message or handle errors
             console.error(xhr.responseText);
             alert("An error occurred while creating the post. Please try again later.");
         },
+        });
+    });
+});
+// Get comment of the post logic
+$(document).ready(function() {
+    $(".post-comment").click(function(event) {
+        event.preventDefault();
+        var targetAttribute = $(this).data("bs-target");
+        var postPk = targetAttribute.split("-")[1];
+        $.ajax({
+            type: "GET",
+            url: "/get_comment_post/" + postPk + "/",
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+                var $modalBody = $("#comment-body-"+postPk);
+
+                var commentData = response.comment_data;
+                console.log(commentData.length);
+
+                if (commentData.length === 0) {
+                    var noCommentHTML = '<div class="text-center">No comments for this post</div>';
+                    $modalBody.html(noCommentHTML);
+                } else {
+                    $modalBody.empty();
+                    $.each(commentData, function(index, comment) {
+                        var commentHTML = `
+                            <div class="post-title d-flex align-items-center mb-2">
+                                <div class="profile-thumb">
+                                    <a href="#">
+                                        <figure class="profile-thumb-middle">
+                                            <img src="${comment.profile_image_url}" alt="profile picture" />
+                                        </figure>
+                                    </a>
+                                </div>
+                                <div class="posted-author w-100 p-3 rounded" style="background-color: #f0f2f5;">
+                                    <h6 class="author">
+                                        <a>${comment.user_full_name}</a>
+                                    </h6>
+                                    <span class="post-time">${comment.comment_content}</span>
+                                </div>
+                            </div>
+                        `;
+                        $modalBody.append(commentHTML);
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
         });
     });
 });
