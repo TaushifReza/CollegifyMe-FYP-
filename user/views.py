@@ -42,7 +42,6 @@ def RegisterView(request):
             email_template = "account/email/accountVerification.html"
             send_verification_email(request, user, mail_subject, email_template)
             messages.success(request, "Please check your mail for verification")
-            return redirect("registerView")
     else:
         form = UserForm()
     context = {
@@ -151,7 +150,7 @@ def SendOTP(request):
         except User.DoesNotExist:
             messages.error(request, "Email doesn't exist.")
             return render(request, "account/forgetPassword.html")
-        mail_subject = "Please activate your account"
+        mail_subject = "Forgot Password OTP"
         email_template = "account/email/sendOTP.html"
         send_otp_email(request, email, mail_subject, email_template)  # Corrected line
         messages.success(request, "Please check your mail for verification")
