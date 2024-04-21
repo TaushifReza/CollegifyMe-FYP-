@@ -42,13 +42,24 @@ CollegifyMe-Login
                   placeholder="E-mail Address"
                   required
                 />
-                <input
+                {% comment %} <input
                   class="form-control text-white"
                   type="password"
                   name="password"
                   placeholder="Password"
                   required
-                />
+                /> {% endcomment %}
+                <div class="password-container">
+                  <input
+                    id="password"
+                    class="form-control text-white"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                  />
+                  <span toggle="#password" class="eye-toggle"></span>
+                </div>
                 <a href="{% url "forgetPasswordView" %}" class="d-flex flex-row-reverse bd-highlight">Forget password?</a>
                 <div class="form-button mt-3">
                   <button id="submit" type="submit" class="ibtn w-100">Login</button>

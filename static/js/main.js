@@ -305,20 +305,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  const eyeToggles = document.querySelectorAll('.eye-toggle');
+const eyeToggles = document.querySelectorAll('.eye-toggle');
 
-  eyeToggles.forEach(function(eyeToggle) {
-    eyeToggle.addEventListener('click', function() {
-      const passwordField = document.querySelector(this.getAttribute('toggle'));
-      if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-        this.classList.remove('fa-eye-slash');
-        this.classList.add('fa-eye');
-      } else {
-        passwordField.type = 'password';
-        this.classList.remove('fa-eye');
-        this.classList.add('fa-eye-slash');
-      }
-    });
-  });
+eyeToggles.forEach(function(eyeToggle) {
+eyeToggle.addEventListener('click', function() {
+    const passwordField = document.querySelector(this.getAttribute('toggle'));
+    if (passwordField.type === 'password') {
+    passwordField.type = 'text';
+    this.classList.remove('fa-eye-slash');
+    this.classList.add('fa-eye');
+    } else {
+    passwordField.type = 'password';
+    this.classList.remove('fa-eye');
+    this.classList.add('fa-eye-slash');
+    }
+});
+});
 });
