@@ -9,12 +9,6 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-      crossorigin="anonymous"
-    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link
       rel="stylesheet"
@@ -25,7 +19,11 @@
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"
     ></script>
-
+    <!-- Font Awesome CDN link below -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="{% static 'css/messages.css' %}" />
   </head>
   <!--Coded With Love By Mutiullah Samim-->
@@ -38,9 +36,9 @@
 
         <div class="col-1 chat h-100 side-bar">
           <ul class="sidebar-list">
-            <li><a href="{% url 'homePage' %}">Home</a></li>
-            <li>Home</li>
-            <li>Home</li>
+            <li class="mt-4"><i class="fa-solid fa-message h2"></i></li>
+            <li class="mt-4"><a href="{% url 'homePage' %}" class="text-decoration-none"><i class="fa-solid fa-house h2"></i></a></li>
+            <li class="mt-4"><i class="fa-solid fa-user h2"></i></li>
           </ul>
         </div>
 

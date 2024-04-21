@@ -3,10 +3,11 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib import messages, auth
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.hashers import make_password
 
 from .form import UserForm
 from .models import User
-from .utils import send_verification_email
+from .utils import send_verification_email, send_otp_email
 from student.models import StudentProfile
 from college.models import CollegeProfile
 
@@ -140,3 +141,38 @@ def LogoutView(request):
 
 def ForgetPassword(request):
     return render(request, "account/forgetPassword.html")
+
+
+def SendOTP(request):
+    if request.method == "POST":
+        email = request.POST.get("email")  # Corrected line
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            messages.error(request, "Email doesn't exist.")
+            return render(request, "account/forgetPassword.html")
+        mail_subject = "Please activate your account"
+        email_template = "account/email/sendOTP.html"
+        send_otp_email(request, email, mail_subject, email_template)  # Corrected line
+        messages.success(request, "Please check your mail for verification")
+        return redirect("verifyOtp")
+    return render(request, "account/forgetPassword.html")
+
+
+def verify_otp(request):
+    if request.method == "POST":
+        entered_otp = request.POST.get("otp")
+        new_password = request.POST.get("newPassword")
+        stored_otp = request.session.get("otp")
+        stored_email = request.session.get("email")
+        if entered_otp == stored_otp:
+            # OTP matched, do something here
+            user = User.objects.get(email=stored_email)
+            user.password = make_password(new_password)
+            user.save()
+            messages.success(request, "Password reset successfully!")
+            return redirect("loginView")
+        else:
+            messages.error(request, "Invalid OTP, please try again.")
+            return redirect("verifyOtp")
+    return render(request, "account/passwordReset.html")

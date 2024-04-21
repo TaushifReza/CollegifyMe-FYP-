@@ -40,13 +40,11 @@ socket.onopen = async function(e){
 }
 
 socket.onmessage = async function(e){
-    console.log('message', e);
     let data = JSON.parse(e.data)
     let message = data['message']
     let  sent_by_id = data['sent_by']
     let thread_id = data['thread_id']
 
-    console.log(data);
     let sent_by_img_url = data['sent_by_info']['user_prfile']['profile_image']
     let sent_to_img_url = data['sent_to_info']['user_prfile']['profile_image']
     let message_time = data['message_time']
@@ -82,7 +80,7 @@ function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img
         message_element = `
         <div class="d-flex mb-4 received">
             <div class="img_cont_msg">
-                <img src="${sent_to_img_url}" class="rounded-circle user_img_msg">
+                <img src="${sent_by_img_url}" class="rounded-circle user_img_msg">
             </div>
             <div class="msg_cotainer">
                 ${message}
@@ -99,7 +97,7 @@ function newMessage(message, sent_by_id, thread_id, sent_by_img_url, sent_to_img
 }
 
 $('.contact-li').on('click', function (){
-    $('.contacts .actiive').removeClass('active')
+    $('.contacts .active').removeClass('active')
     $(this).addClass('active')
 
     // message wrappers

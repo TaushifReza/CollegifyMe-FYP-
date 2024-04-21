@@ -9,4 +9,6 @@ urlpatterns = [
     path("forgetPassword/", views.ForgetPassword, name="forgetPasswordView"),
     path("activate/<uidb64>/<token>/", views.activate, name="activate"),
     path("logout/", views.LogoutView, name="logoutView"),
+    path("sendOTP/", views.SendOTP, name="sendOTP"),
+    path("verifyOtp/", views.verify_otp, name="verifyOtp"),
 ]

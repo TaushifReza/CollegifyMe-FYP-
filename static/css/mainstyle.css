@@ -135,3 +135,26 @@
 .hide{
   display: none;
 }
+
+.password-container {
+  position: relative;
+}
+
+.eye-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaa;
+}
+
+.eye-toggle:before {
+  content: '\f070';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
+.input-group .eye-toggle:hover {
+  color: #333;
+}
