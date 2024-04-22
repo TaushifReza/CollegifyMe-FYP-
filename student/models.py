@@ -20,8 +20,17 @@ class StudentProfile(models.Model):
 
 
 class StudentEducation(models.Model):
+    LEVEL_OF_EDUCATION_CHOICES = (
+        ("High School", "High School"),
+        ("Undergraduate", "Undergraduate"),
+        ("Graduate", "Graduate"),
+        ("Postgraduate", "Postgraduate"),
+        ("Other degree", "Other degree"),
+    )
     user = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
-    level_of_education = models.CharField(max_length=50)
+    level_of_education = models.CharField(
+        max_length=50, choices=LEVEL_OF_EDUCATION_CHOICES
+    )
     degree_name = models.CharField(max_length=50)
     college_name = models.CharField(max_length=50)
     start_date = models.DateField()

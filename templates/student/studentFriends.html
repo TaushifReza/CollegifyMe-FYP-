@@ -45,12 +45,7 @@ CollegifyMe
               <div class="main-menu-inner header-top-navigation">
                 <nav>
                   <ul class="main-menu">
-                    <li><a href="#">timeline</a></li>
-                    <li><a href="about.html">about</a></li>
-                    <li><a href="photos.html">photos</a></li>
-                    <li class="active"><a href="#">friends</a></li>
-                    <li><a href="about.html">more</a></li>
-                    <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
+                    <li><a href="{% url 'studentProfileView' %}">timeline</a></li>
                   </ul>
                 </nav>
               </div>
@@ -58,7 +53,7 @@ CollegifyMe
           </div>
           <div class="col-lg-2 col-md-3 d-none d-md-block">
             <div class="profile-edit-panel">
-              <button class="edit-btn">edit profile</button>
+              <a class="edit-btn" href="{% url 'studentFriendsView' %}">friends</a>
             </div>
           </div>
         </div>
@@ -81,18 +76,6 @@ CollegifyMe
                 <button data-filter=".collage">collage</button>
                 <button data-filter=".relative">pending</button>
                 <button data-filter=".request">decline</button>
-              </div>
-              <div class="post-settings-bar">
-                <span></span>
-                <span></span>
-                <span></span>
-                <div class="post-settings arrow-shape">
-                  <ul>
-                    <li><button>edit profile</button></li>
-                    <li><button>activity log</button></li>
-                    <li><button>embed adda</button></li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>

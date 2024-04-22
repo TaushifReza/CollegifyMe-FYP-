@@ -5,7 +5,7 @@ from django.db.models import Count, Q
 
 from datetime import datetime, timedelta
 
-from student.models import StudentProfile, StudentFriends
+from student.models import StudentProfile, StudentFriends, StudentEducation
 from student.forms import StudentProfileForm, StudentEducationForm
 from user.views import check_role_student
 from user.models import User
@@ -17,18 +17,23 @@ from post.models import Post
 def StudentRegistrationView(request):
     if request.method == "POST":
         form = StudentProfileForm(request.POST, request.FILES)
-        if form.is_valid():
+        education_form = StudentEducationForm(request.POST)
+        if form.is_valid() and education_form.is_valid():
             # return redirect("studentRegistrationView")
             student = form.save(commit=False)
             user = request.user
             student.user = user
             student.save()
+            add_studet_eduation = education_form.save(commit=False)
+            add_studet_eduation.user = student
+            add_studet_eduation.save()
             messages.success(request, "You have successful regiater yourself.")
             return redirect("homePage")
     else:
         form = StudentProfileForm()
     context = {
         "form": form,
+        "education_form": StudentEducationForm,
     }
     return render(request, "student/registration.html", context)
 
@@ -60,7 +65,17 @@ def StudentProfileView(request):
         .order_by("-post_date")
     )
 
-    context = {"user": user, "user_profile": user_profile, "posts": posts}
+    education = StudentEducation.objects.filter(user=user_profile)
+
+    for i in education:
+        print(i.level_of_education)
+
+    context = {
+        "user": user,
+        "user_profile": user_profile,
+        "posts": posts,
+        "education": education,
+    }
     return render(request, "student/studentProfile.html", context=context)
 
 

@@ -61,6 +61,10 @@ class StudentEducationForm(forms.ModelForm):
             "start_date",
             "end_date",
         ]
+        widgets = {
+            "start_date": forms.DateInput(attrs={"type": "date"}),
+            "end_date": forms.DateInput(attrs={"type": "date"}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(StudentEducationForm, self).__init__(*args, **kwargs)

@@ -31,10 +31,8 @@ CollegifyMe-Login
               </h3>
             </div>
             <div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur <br />adipisicing elit. Harum doloremque inventore iste ea vel?
-                {% comment %} Fill the form, make your offer<br />And get the domain name
-                before it’s gone. {% endcomment %}
+              <p class="lh-1">
+                Welcome to our community of aspiring scholars! <br/>Begin your journey by creating your unique account. Let's unlock a world of opportunities together!
               </p>
             </div>
           </div>
@@ -87,23 +85,45 @@ CollegifyMe-Login
                 </div>
 
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="College Name" class="font-weight-normal">Current Address</label>
                     {{ form.current_address}}
                   </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="College Name" class="font-weight-normal">Permanent Address</label>
                     {{ form.permanent_address}}
                   </div>
                 </div>
 
-                <!-- Form Submit Button-->
-                <div class="row top-padding">
+                <!-- Student Education form-->
+                <div class="row">
+                  <div class="col-6">
+                    {{ education_form.level_of_education}}
+                  </div>
+                  <div class="col-6">
+                    {{ education_form.degree_name}}
+                  </div>
+                </div>
+
+                <div class="row">
                   <div class="col-12">
-                    <div class="form-button text-left">
+                    {{ education_form.college_name}}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6">
+                    {{ education_form.start_date}}
+                  </div>
+                  <div class="col-6">
+                    {{ education_form.end_date}}
+                  </div>
+                </div>
+
+                <!-- Form Submit Button-->
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-button text-left" style="margin-top: 0;">
                       <button
                         id="submit"
                         type="submit"

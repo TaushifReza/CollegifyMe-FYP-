@@ -49,8 +49,14 @@ CollegifyMe-Register
               </ul>
 
               {{ form.email }}
-              {{ form.password }}
-              {{ form.confirm_password }}
+              <div class="password-container">
+                {{ form.password }}
+                {% comment %} <span toggle="#password" class="eye-toggle"></span> {% endcomment %}
+              <div>
+              <div class="password-container">
+                {{ form.confirm_password }}
+                {% comment %} <span toggle="#password" class="eye-toggle"></span> {% endcomment %}
+              </div>
 
               <a href="{% url "registerCollegeView" %}" class="d-flex flex-row-reverse bd-highlight">Register as College</a>
 

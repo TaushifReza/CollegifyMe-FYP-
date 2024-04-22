@@ -15,7 +15,7 @@ CollegifyMe-Student Profile
       data-bg="{{ user_profile.cover_image.url }}"
       ></div>
     {% else %}
-      <img src="{% static 'images/defuault_cover.jpg' %}"/>
+      <img src="{% static 'images/defuault_cover.jpg' %}" class="profile-banner-large bg-img" style="width: 100%;"/>
     {% endif %}
     <div class="profile-menu-area bg-white">
       <div class="container">
@@ -41,12 +41,7 @@ CollegifyMe-Student Profile
               <div class="main-menu-inner header-top-navigation">
                 <nav>
                   <ul class="main-menu">
-                    <li class="active"><a href="#">timeline</a></li>
-                    <li><a href="about.html">about</a></li>
-                    <li><a href="photos.html">photos</a></li>
-                    <li><a href="{% url 'studentFriendsView' %}">friends</a></li>
-                    <li><a href="about.html">more</a></li>
-                    <!-- <li class="d-inline-block d-md-none"><a href="profile.html">edit profile</a></li> -->
+                    <li class="active"><a href="{% url 'studentProfileView' %}">timeline</a></li>
                   </ul>
                 </nav>
               </div>
@@ -54,7 +49,7 @@ CollegifyMe-Student Profile
           </div>
           <div class="col-lg-2 col-md-3 d-none d-md-block">
             <div class="profile-edit-panel">
-              <button class="edit-btn">edit profile</button>
+              <a class="edit-btn" href="{% url 'studentFriendsView' %}">friends</a>
             </div>
           </div>
         </div>
@@ -75,25 +70,41 @@ CollegifyMe-Student Profile
                   </p>
                   <ul class="author-into-list">
                     <li>
-                      <a href="#"
-                        ><i class="bi bi-office-bag"></i>Web Developer</a
-                      >
-                    </li>
-                    <li>
+                      <i class="fas fa-map-marker-alt"></i> 
                       <a href="#"
                         >{{ user_profile.permanent_address }}</a
                       >
                     </li>
                     <li>
+                      <i class="fas fa-map-marker-alt"></i> 
                       <a href="#"
                         >{{ user_profile.current_address }}</a
                       >
                     </li>
-                    <li>
-                      <a href="#"
-                        ><i class="bi bi-heart-beat"></i>Travel, Swimming</a
-                      >
-                    </li>
+                    <hr>
+                    {% for edu in education %}
+                      <li>
+                          <i class="fas fa-graduation-cap"></i> 
+                          <a href="#">{{ edu.level_of_education }}</a>
+                      </li>
+                      <li>
+                          <i class="fas fa-certificate"></i> 
+                          <a href="#">{{ edu.degree_name }}</a>
+                      </li>
+                      <li>
+                          <i class="fas fa-university"></i> 
+                          <a href="#">{{ edu.college_name }}</a>
+                      </li>
+                      <li>
+                          <i class="fas fa-calendar-alt"></i> 
+                          <a href="#">{{ edu.start_date }}</a>
+                      </li>
+                      <li>
+                          <i class="fas fa-calendar-alt"></i> 
+                          <a href="#">{{ edu.end_date }}</a>
+                      </li>
+                  {% endfor %}
+
                   </ul>
                 </div>
               </div>
@@ -535,7 +546,7 @@ CollegifyMe-Student Profile
                     <li>
                       <button class="post-comment d-flex" data-bs-toggle="modal" data-bs-target="#comment-{{ post.pk }}">
                         <i class="fa-regular fa-comment"></i>
-                        <span>Comming soon</span>
+                        <span>Comment</span>
                       </button>
                     </li>
                   </ul>
