@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
+# The `UserManager` class defines methods to create regular users and superusers with specified
+# attributes.
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:
@@ -30,6 +32,8 @@ class UserManager(BaseUserManager):
         return user
 
 
+# The `User` class defines a custom user model with fields for email, role, and various permissions
+# and methods.
 class User(AbstractBaseUser):
     STUDENT = 1
     COLLEGE = 2
